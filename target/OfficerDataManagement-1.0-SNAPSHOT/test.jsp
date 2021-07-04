@@ -15,19 +15,7 @@
 <!DOCTYPE html>
 
 <%
-OfficerDataProcessor officerDataProcessor=new OfficerDataProcessor();
 request.setCharacterEncoding("UTF-8");
-Officer officer = officerDataProcessor.getOfficerAllByIndexNumber(request.getParameter("IndexNumber"));
-request.setAttribute("PensionAgeValue", officer.getPensionAge()); 
-
- List<String> dept=new ArrayList<String>(); 
-dept.add("45");  
-dept.add("50");  
-dept.add("55");  
-dept.add("60");  
-dept.add("65");
- request.setAttribute("dept ", dept);
- String selected="";
 %>
 
 
@@ -165,7 +153,7 @@ dept.add("65");
   </head>
   <body>
     <div class="main-block">
-    <form method="post" action="GetOfficerData.jsp" accept-charset="UTF-8">
+    <form method="post" action="testjsp.jsp" accept-charset="UTF-8">
       <h1>නිලධාරි තොරතුරු ඇතුලත් කිරිම</h1>
      <fieldset>
         <legend>
@@ -174,17 +162,11 @@ dept.add("65");
         <div  class="account-details">
           <div><label>විශ්‍රාම ලබන වයස </label>
               <select name="PensionAge">
-                    <%
-                        for (int i = 0; i < dept.size(); i++) {
-                    %>
-                    <option value=<%=dept.get(i)%>   <% if(dept.get(i).equals(officer.getPensionAge())){selected=" selected";} %>  <%=selected%><%selected="";%>><%=dept.get(i)%></option>
-                    <%
-                        }
-                    %>
             </select>
            </div>
-            <div><label>විශ්‍රාම </label><input type="text" name="PensionAge2" value="<%=officer.getPensionAge()%>"></div>
-            <div><label>විශ්‍රාම2 </label><input type="text" name="PensionAge3" value="${PensionAgeValue}"></div>
+          <div class="checkbox">
+            <label><input type="checkbox" name="NIC" value="NIC" checked ><span>හැදුනුම්පත් අංකය</span></label>
+          </div>
         </div>
       </fieldset>
       <fieldset>
