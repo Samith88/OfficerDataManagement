@@ -102,6 +102,7 @@ public class OfficerDB {
                DBConnection.disconnect();
            } catch (SQLException e) {
                getLogger.getLog().debug(e.toString());
+                try{DBConnection.disconnect();}catch (SQLException ex) {}
            }     
            return officer;
        }
@@ -145,17 +146,18 @@ public class OfficerDB {
                DBConnection.disconnect();
            } catch (SQLException e) {
                getLogger.getLog().debug(e.toString());
+                try{DBConnection.disconnect();}catch (SQLException ex) {}
            }     
            return officer;
        } 
     
-       public  List<Officer>  getOfficerAllByIndexNumberWildCard(String IndexNumberWildCard) throws Exception{
+       public  List<Officer>  getOfficerAllByIndexNumberWildCard(String whereString) throws Exception{
            
            RetrieveData retrieveClass =new RetrieveData();
            Officer officer = null;
            List<Officer> officers = new ArrayList<>();
            try{
-               ResultSet rs  = retrieveClass.getResultsFormDB("select *  from Officer where  IndexNumber like  '%"+IndexNumberWildCard+"%' ;");
+               ResultSet rs  = retrieveClass.getResultsFormDB("select *  from Officer "+whereString+";");
                while (rs.next()) {
                    officer = new Officer();
                    officer.setOfficerEntryId(rs.getString("OfficerEntryId"));
@@ -190,6 +192,7 @@ public class OfficerDB {
                DBConnection.disconnect();
            } catch (SQLException e) {
                getLogger.getLog().debug(e.toString());
+               try{DBConnection.disconnect();}catch (SQLException ex) {}
            }     
            return officers;
        } 

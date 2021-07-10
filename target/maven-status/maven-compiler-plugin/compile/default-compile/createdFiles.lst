@@ -8,4 +8,5 @@ officerdatamanager\VariableStorage.class
 com\samith\base\Officer.class
 com\samith\controller\FileBackupController.class
 com\samith\controller\FileEncryptor.class
+com\samith\configs\VariableStorage.class
 com\samith\database\DBConnection.class

@@ -4,6 +4,7 @@
     Author     : UDISSSA1
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.LinkedHashMap"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.HashMap"%>
@@ -14,7 +15,46 @@
 <%
 request.setCharacterEncoding("UTF-8");
 OfficerDataProcessor officerDataProcessor=new OfficerDataProcessor();
-List<Officer>  officers = officerDataProcessor.getOfficerAllByIndexNumberWildCard(request.getParameter("GetIndexNumber").trim());
+String option1textIn="";
+try{
+    if(!request.getParameter("option1text").equals(""))
+        option1textIn = request.getParameter("option1text").trim();
+        System.out.println("option1textIn is:"+option1textIn);
+} catch (Exception e) {
+          System.out.print(e);
+}
+String option2textIn="";
+try{	
+    if(!request.getParameter("option2text").equals(""))
+        option2textIn = request.getParameter("option2text").trim();
+        System.out.println("option2textIn is:"+option2textIn);
+} catch (Exception e) {
+         e.printStackTrace();
+         System.out.print(e);
+}
+String option1selectIn="";
+try{
+    if(!request.getParameter("option1text").equals(""))
+        option1selectIn =request.getParameter("option1select");
+} catch (Exception e) {
+         e.printStackTrace();
+}
+
+String option2selectIn="";
+try{
+    if(!request.getParameter("option2text").equals(""))
+        option2selectIn =request.getParameter("option2select");
+} catch (Exception e) {
+         e.printStackTrace();
+}
+
+//List<Officer>  officers = officerDataProcessor.getOfficerAllByIndexNumberWildCard(request.getParameter("GetIndexNumber").trim());
+List<Officer> officers = new ArrayList<>();
+try{
+officers = officerDataProcessor.getOfficerAllByIndexNumberWildCard (option1textIn, option2textIn, option1selectIn ,option2selectIn );
+} catch (Exception e) {
+         e.printStackTrace();
+}
 
 Map<String, String> wantedValues = new LinkedHashMap<String, String>();
 
@@ -171,7 +211,7 @@ try{
 } catch (Exception e) {
          wantedValues.put("PensionDate","");
 }
-       
+
 %>
 <!DOCTYPE html>
 <html>
@@ -184,6 +224,8 @@ try{
     </head>
     <body>
         <h1>නිලධාරී දත්ත</h1>
+        <div>
+            <fieldset>
        <table align="center" cellpadding="5" cellspacing="5" border="1">
 
        <tr>
@@ -211,6 +253,8 @@ try{
        
        <%
        try {
+       if(officers.size()>0)
+       {
        for (int i = 0; i < officers.size(); i++) {
        Officer officer= officers.get(i);
        %>
@@ -268,11 +312,24 @@ try{
        
        <% 
            }
+          }
        } catch (Exception e) {
        e.printStackTrace();
        }
        %>
-       </table> 
+       </table>
+       </fieldset>
+     </div>
+    <div>
+      <fieldset>
+          <div>
+             <a href="main.jsp">නැවත මුල් පිටුවට</a>
+          </div>
+          <div>
+             <a href="ViewData.jsp">නැවත නිලධාරි තොරතුරු දැක්මට</a>
+          </div>
+      </fieldset>
+      </div>
        
     </body>
 </html>

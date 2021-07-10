@@ -2,7 +2,9 @@ package com.samith.configs;
 
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -152,6 +154,43 @@ public class VariableStorage {
         return AreaFileNoList;
     }
     
+    public static Map<String, String> getOptionsList() {
+        OptionsList.clear();
+        OptionsList.put("IndexNumber","අනු අංකය");
+        OptionsList.put("EmpName","මුලකුරු සමග නම ");
+        OptionsList.put("FullName","සම්පුර්න නම");
+        OptionsList.put("ContactNo","දුරකථන අංකය");
+        OptionsList.put("BirthDay","උපන් දිනය");
+        OptionsList.put("NIC","හැදුනුම්පත් අංකය");
+        OptionsList.put("Gender","ස්ත්‍රි පුරුෂ භාවය");
+        OptionsList.put("Address","ලිපිනය");
+        OptionsList.put("OfficeType","නිලධාරි වර්ගය");
+        OptionsList.put("Designation","තනතුර");
+        OptionsList.put("Grade","ශ්‍රේණිය");
+        OptionsList.put("OfficeLocation","සේවා ස්තානය");
+        OptionsList.put("OfficeLocationJoinDate","සේවා ස්තානයට පත්වුනු දවස");
+        OptionsList.put("AreaFileNo","ග්‍රාමනිලධාරි කොට්ථාශය");
+        OptionsList.put("ServiceArea","කලාපය / සේවා ස්ථානය");
+        OptionsList.put("FirstAppointmentDate","මුල් පත්වීම් දිනය");
+        OptionsList.put("SecondAppointmentDate","නියාමක පත්වීම");
+        OptionsList.put("SamurdhiAuthAppointmentDate","සමෘද්ධි සංවර්ධන නිලධාරි (සමෘ.අධිකාරි) පත්වීම් දිනය");
+        OptionsList.put("SalaryNo","වැටුප් අංකය");
+        OptionsList.put("SalaryIncreamentDate","වැටුප් වර්ධක දිනය");
+        OptionsList.put("ServiceType","සේවා");
+        OptionsList.put("ETF","පාරිතෝෂික ලෑබිම");
+        OptionsList.put("PensionAge","විශ්‍රාම ලබන වයස ");
+        OptionsList.put("PensionDate","විශ්‍රාම ලබන  දිනය ");
+        return OptionsList;
+    }
+
+    public static String getUsername() {
+        return username;
+    }
+
+    public static String getPassword() {
+        return password;
+    }
+
     private static final List<String> AgeList =new ArrayList<String>();
     private static final List<String> GenderList =new ArrayList<String>();
     private static final List<String> OfficerTypeList =new ArrayList<String>();
@@ -160,9 +199,8 @@ public class VariableStorage {
     private static final List<String> OfficeLocationList =new ArrayList<String>();
     private static final List<String> ServiceAreaList =new ArrayList<String>();
     private static final List<String> AreaFileNoList=new ArrayList<String>();
-
-
-
-    
+    private static final Map<String, String> OptionsList = new LinkedHashMap<String, String>();
+    private static final String username="inosam";
+    private static final String password="inosam";
 
 }

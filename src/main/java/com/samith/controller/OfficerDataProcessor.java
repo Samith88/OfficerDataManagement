@@ -40,9 +40,24 @@ public class OfficerDataProcessor {
          return officerDB.getOfficerAllByIndexNumber(IndexNumber);
     }
     
-    public   List<Officer>  getOfficerAllByIndexNumberWildCard(String IndexNumberWildCard) throws Exception{
+    public   List<Officer>  getOfficerAllByIndexNumberWildCard(String option1text,String option2text,String option1select,String option2select) throws Exception{
+        String whereString=" where ";
+        if(!option1text.equals(""))
+            whereString += option1select+" like  '%"+option1text+"%'";
+        if(( !option1text.equals("")) && (!option2text.equals("")))
+            if(option1select.equals(option2select))
+                whereString += " or "+option2select.trim()+" like  '%"+option2text.trim()+"%'";
+            else
+             whereString += " and "+option2select.trim()+" like  '%"+option2text.trim()+"%'";
+        if(( option1text.equals("")) && (!option2text.equals("")))
+             whereString += option2select.trim()+" like  '%"+option2text.trim()+"%'";
+
+        if(whereString.equals(" where "))
+            whereString="";
+        
+        System.out.println(whereString);
          OfficerDB officerDB=new OfficerDB();
-         return officerDB.getOfficerAllByIndexNumberWildCard(IndexNumberWildCard);
+         return officerDB.getOfficerAllByIndexNumberWildCard(whereString);
     }
     
 }

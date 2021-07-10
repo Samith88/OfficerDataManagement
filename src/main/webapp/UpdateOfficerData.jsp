@@ -11,7 +11,18 @@
 <%@page import="com.samith.controller.OfficerDataProcessor"%>
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
+<%
 
+        Cookie cookie=null;
+        Cookie[] cookies=null;
+        cookies=request.getCookies();
+        String scheme=request.getScheme();
+
+                if (cookies == null) {
+                response.sendRedirect("index.jsp");
+                System.out.print("No Cookies!");
+                }
+%>
 <%
 OfficerDataProcessor officerDataProcessor=new OfficerDataProcessor();
 request.setCharacterEncoding("UTF-8");

@@ -7,6 +7,18 @@
 <%@page import="java.util.List"%>
 <%@page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
+
+        Cookie cookie=null;
+        Cookie[] cookies=null;
+        cookies=request.getCookies();
+        String scheme=request.getScheme();
+
+                if (cookies == null) {
+                response.sendRedirect("index.jsp");
+                System.out.print("No Cookies!");
+                }
+%>
+<%
 request.setCharacterEncoding("UTF-8");
 List<String> AgeList = com.samith.configs.VariableStorage.getAgeList();
 List<String> GenderList = com.samith.configs.VariableStorage.getGenderList();

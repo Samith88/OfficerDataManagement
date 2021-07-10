@@ -5,10 +5,24 @@
 --%>
 
 <%@page  contentType="text/html;charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@page import="com.samith.configs.VariableStorage"%>
 
+<%
+
+        Cookie cookie=null;
+        Cookie[] cookies=null;
+        cookies=request.getCookies();
+        String scheme=request.getScheme();
+
+                if (cookies == null) {
+                response.sendRedirect("index.jsp");
+                System.out.print("No Cookies!");
+                }
+    %>
 <!DOCTYPE html>
 <html>
   <head>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
     <title>නිලධාරි තොරතුරු කලමණාකරනය</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
@@ -94,7 +108,8 @@
       </div>
       <button type="submit">නැවත සැකසිම</button>
       </form>
-    
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
   </body>
 </html>
+
     

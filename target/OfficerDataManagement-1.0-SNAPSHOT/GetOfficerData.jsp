@@ -10,7 +10,18 @@
 <%@page import="com.samith.controller.OfficerDataProcessor"%>
 <%@page import="com.samith.base.Officer"%>
 
+<%
 
+        Cookie cookie=null;
+        Cookie[] cookies=null;
+        cookies=request.getCookies();
+        String scheme=request.getScheme();
+
+                if (cookies == null) {
+                response.sendRedirect("index.jsp");
+                System.out.print("No Cookies!");
+                }
+%>
 <%
 
 Officer officer=new Officer();

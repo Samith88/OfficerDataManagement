@@ -4,7 +4,27 @@
     Author     : UDISSSA1
 --%>
 
+<%@page import="java.util.Map"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+request.setCharacterEncoding("UTF-8");
+Map<String, String> OptionsList  = com.samith.configs.VariableStorage.getOptionsList();
+//request.setAttribute("operation", "insert");
+session.setAttribute("operation",  "insert");
+%>
+<%
+
+        Cookie cookie=null;
+        Cookie[] cookies=null;
+        cookies=request.getCookies();
+        String scheme=request.getScheme();
+
+                if (cookies == null) {
+                response.sendRedirect("index.jsp");
+                System.out.print("No Cookies!");
+                }
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,12 +42,21 @@
       }
       input[type=text], input[type=password] {
       width: 100%;
-      padding: 16px 8px;
+      padding: 10px 8px;
       margin: 8px 0;
       display: inline-block;
       border: 1px solid #ccc;
       box-sizing: border-box;
       }
+      
+      select {
+      width: calc(100%);
+      padding: 10px 0;
+      }
+      select {
+      background: transparent;
+      }
+      
       button {
       background-color: #8ebf42;
       color: white;
@@ -69,15 +98,54 @@
     <body>
      <form action="ViewDataTable.jsp">
       <h1>නිලධාරී දත්ත බලන්න</h1>
+      
+      <fieldset>
+        <legend>
+          <h3>අවශ්‍ය නිලධාරින් පමනක් ලබාගැනිම</h3>
+        </legend>
       <div class="formcontainer">
-      <div class="container">
-        <label for="IndexNumber"><strong>නිලධාරි අනු අංකය </strong></label>
-        <input type="text" placeholder="අනු අංකය" name="GetIndexNumber" id="IndexNumber">
-      </div>
+        <div class="container">
+        <div></div>
+              <div>
+              <label><strong>පළමු විමසුම </strong></label>
+              <select name="option1select" id="option1select">
+              <%
+                for (Map.Entry<String, String> entry : OptionsList.entrySet()) {
+               %>
+                    <option value=<%=entry.getKey()%>> <%=entry.getValue()%> </option>
+              <%
+                }
+              %>      
+             </select>
+            </div>
+             
+             <div>
+                 <input type="text" name="option1text">
+             </div>
+          </div>
+           <div  class="container">
+              <div>
+              <label><strong>දෙවන විමසුම </strong></label>
+              <select name="option2select" id="option2select">
+              <%
+                for (Map.Entry<String, String> entry : OptionsList.entrySet()) {
+               %>
+                    <option value=<%=entry.getKey()%>> <%=entry.getValue()%> </option>
+              <%
+                }
+              %>     
+             </select>
+            </div>
+              <div>
+                 <input type="text" name="option2text">
+             </div>
+        </div>
+        </div>
+        </fieldset> 
           
       <fieldset>
         <legend>
-          <h3>අවශ්‍ය විස්තර පමනක් තොරන්න</h3>
+          <h3>අවශ්‍ය විස්තර පමනක් තේරිම</h3>
         </legend>
         <div  class="terms-mailing">
           <div class="checkbox">
@@ -179,5 +247,12 @@
 
       <button type="submit">නිලධාරී දත්ත බලමු</button>
       </form>
+    <div class="container">
+      <fieldset>
+          <div>
+             <a href="main.jsp">නැවත මුල් පිටුවට</a>
+          </div>
+      </fieldset>
+      </div>
     </body>
 </html>
