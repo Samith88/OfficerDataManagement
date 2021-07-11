@@ -20,6 +20,7 @@ public class RetrieveData {
         try {
             result = DBConnection.readConnect().createStatement().executeQuery(sql);
             getLogger.getLog().debug(sql);
+            System.out.println(sql);
         } catch (SQLException e) {
             getLogger.getLog().debug(e.toString());
         }

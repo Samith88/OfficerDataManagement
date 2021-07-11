@@ -62,9 +62,4 @@ public class OfficerDataProcessor {
          return officerDB.getOfficerAllByIndexNumberWildCard(whereString);
     }
     
-    public  List<Officer>  getOfficerAllByPensionDate(String MonthsToAddPentionDate) throws Exception{
-         OfficerDB officerDB=new OfficerDB();
-         return officerDB.getOfficerAllByPensionDate(MethodStorage.getPentionDate());
-    }
-    
 }

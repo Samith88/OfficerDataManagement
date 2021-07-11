@@ -100,7 +100,17 @@ public class OfficerDB {
                + " where OfficerEntryId='"+officer.getOfficerEntryId()+"';");
           }
         
-
+        public void updatePensionDetails(List<Officer> officers){
+    
+        InsertUpdateDeleteClass insertUpdateDeleteClass =null;
+        for(int i=0;i<officers.size();i++){
+                    insertUpdateDeleteClass =new InsertUpdateDeleteClass(); 
+                    insertUpdateDeleteClass.insertUpdateDeleteDB("update Officer set  "
+                    + "PensionEmailSend= 'Y'"
+                    + " where OfficerEntryId='"+officers.get(i).getOfficerEntryId()+"';");
+            }
+        }
+        
        public Officer getOfficerByIndexNumber(String IndexNumber) throws Exception{
            
            RetrieveData retrieveClass =new RetrieveData();
@@ -176,7 +186,8 @@ public class OfficerDB {
            Officer officer = null;
            
            try{
-               ResultSet rs  = retrieveClass.getResultsFormDB("select *  from Officer  where PensionDate='"+MonthsToAddPentionDate+"'");
+               ResultSet rs  = retrieveClass.getResultsFormDB("select *  from Officer  where PensionDate='"+MonthsToAddPentionDate+"' and PensionEmailSend='N';");
+               //ResultSet rs  = retrieveClass.getResultsFormDB("select *  from Officer ;");
                while (rs.next()) {
                    officer = new Officer();
                    officer.setOfficerEntryId(rs.getString("OfficerEntryId"));

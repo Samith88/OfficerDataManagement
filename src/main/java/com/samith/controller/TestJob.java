@@ -10,20 +10,23 @@ package com.samith.controller;
  *
  * @author UDISSSA1
  */
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
-import java.text.SimpleDateFormat;  
-import java.util.Date;  
 
 public class TestJob implements Job {
 
     @Override
     public void execute(final JobExecutionContext ctx)
             throws JobExecutionException {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
-        Date date = new Date();  
-        System.out.println("Job1: Executing Job at: "+formatter.format(date));
+        EmailProcessor emailProcessor=new EmailProcessor();
+        try {
+            emailProcessor.sendPensionOfficerEmails();
+        } catch (Exception ex) {
+            Logger.getLogger(TestJob.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
