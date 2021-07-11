@@ -181,11 +181,11 @@ session.setAttribute("operation",  "insert");
           </div>
             <br>
           <div class="checkbox">
-            <label><input type="checkbox" name="Designation"    value="Designation" checked ><span>තනතුර</span></label>
+            <label><input type="checkbox" name="Designation"    value="Designation" checked ><span>විෂය</span></label>
           </div>
             <br>
           <div class="checkbox">
-            <label><input type="checkbox" name="OfficeType"    value="OfficeType"  checked ><span>නිලධාරි වර්ගය</span></label>
+            <label><input type="checkbox" name="OfficeType"    value="OfficeType"  checked ><span>තනතුර</span></label>
           </div>
             <br>
           <div class="checkbox">

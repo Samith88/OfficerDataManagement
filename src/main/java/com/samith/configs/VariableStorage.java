@@ -171,8 +171,8 @@ public class VariableStorage {
         OptionsList.put("NIC","හැදුනුම්පත් අංකය");
         OptionsList.put("Gender","ස්ත්‍රි පුරුෂ භාවය");
         OptionsList.put("Address","ලිපිනය");
-        OptionsList.put("OfficeType","නිලධාරි වර්ගය");
-        OptionsList.put("Designation","තනතුර");
+        OptionsList.put("OfficeType","තනතුර");
+        OptionsList.put("Designation","විෂය");
         OptionsList.put("Grade","ශ්‍රේණිය");
         OptionsList.put("OfficeLocation","සේවා ස්තානය");
         OptionsList.put("OfficeLocationJoinDate","සේවා ස්තානයට පත්වුනු දවස");
@@ -278,7 +278,7 @@ public class VariableStorage {
     private static final String Epass="samith1988";
     private static final String ToAddress="samithdissanayake@gmail.com";
     private static final String SmtpHost= "smtp.gmail.com";
-    private static final String SmtpPort= "465";
+    private static final String SmtpPort= "587";
 
 
 

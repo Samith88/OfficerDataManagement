@@ -218,7 +218,7 @@ session.setAttribute("OfficerEntryId",  officer.getOfficerEntryId());
         <div  class="account-details">
           
           <div>
-              <label>තනතුර</label>
+              <label>විෂය</label>
                 <select name="Designation">
                     <%
                         for (int i = 0; i < DesignationList.size(); i++) {
@@ -231,7 +231,7 @@ session.setAttribute("OfficerEntryId",  officer.getOfficerEntryId());
            </div>
           
           <div>
-              <label>නිලධාරි වර්ගය</label>
+              <label>තනතුර</label>
                 <select name="OfficeType">
                     <%
                         for (int i = 0; i < OfficerTypeList.size(); i++) {

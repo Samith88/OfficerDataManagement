@@ -210,7 +210,7 @@ session.setAttribute("operation",  "insert");
         <div  class="account-details">
 
           <div>
-              <label>තනතුර</label>
+              <label>විෂය</label>
                 <select name="Designation">
                     <%
                         for (int i = 0; i < DesignationList.size(); i++) {
@@ -223,7 +223,7 @@ session.setAttribute("operation",  "insert");
            </div>
           
           <div>
-              <label>නිලධාරි වර්ගය</label>
+              <label>විෂය</label>
                 <select name="OfficeType">
                     <%
                         for (int i = 0; i < OfficerTypeList.size(); i++) {

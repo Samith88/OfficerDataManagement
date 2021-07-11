@@ -8,13 +8,13 @@
 
     <schedule>
         <job>
-            <name>TestJob</name>
-            <job-class>com.samith.controller.TestJob</job-class>
+            <name>EmailSender</name>
+            <job-class>com.samith.controller.EmailSender</job-class>
         </job>
         <trigger>
             <cron>
-                <name>TestJob</name>
-                <job-name>TestJob</job-name>
+                <name>EmailSender</name>
+                <job-name>EmailSender</job-name>
                 <cron-expression>0 0/3 * 1/1 * ? *</cron-expression>
             </cron>
         </trigger>
