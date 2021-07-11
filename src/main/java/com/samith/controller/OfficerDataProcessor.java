@@ -6,7 +6,9 @@
 package com.samith.controller;
 
 import com.samith.base.Officer;
+import com.samith.configs.MethodStorage;
 import com.samith.dao.OfficerDB;
+import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -16,10 +18,10 @@ import java.util.List;
 public class OfficerDataProcessor {
     
     //putOfficerData(Officer officer)
-    public boolean   putOfficerData(Officer officer){
+    public boolean   putOfficerData(Officer officer) throws ParseException{
         OfficerDB officerDB=new OfficerDB();
+        
         return officerDB.putOfficerData(officer);
-    
     }
     
     public boolean   updateOfficerData(Officer officer){
@@ -58,6 +60,11 @@ public class OfficerDataProcessor {
         System.out.println(whereString);
          OfficerDB officerDB=new OfficerDB();
          return officerDB.getOfficerAllByIndexNumberWildCard(whereString);
+    }
+    
+    public  List<Officer>  getOfficerAllByPensionDate(String MonthsToAddPentionDate) throws Exception{
+         OfficerDB officerDB=new OfficerDB();
+         return officerDB.getOfficerAllByPensionDate(MethodStorage.getPentionDate());
     }
     
 }

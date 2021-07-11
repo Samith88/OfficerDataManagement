@@ -4,6 +4,7 @@
     Author     : UDISSSA1
 --%>
 
+<%@page import="com.samith.configs.MethodStorage"%>
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%@page import="java.sql.*,java.util.*"%>
@@ -48,11 +49,22 @@ officer.setSalaryIncreamentDate(request.getParameter("SalaryIncreamentDate").tri
 officer.setServiceType(request.getParameter("ServiceType").trim());
 officer.setETF(request.getParameter("ETF").trim());
 officer.setPensionAge(request.getParameter("PensionAge").trim());
-officer.setPensionDate(request.getParameter("PensionDate").trim());
+
+ if(session.getAttribute("operation").equals("insert"))
+    officer.setPensionDate(MethodStorage.getAddYearsDate(officer.getBirthDay(),officer.getPensionAge()));
+ if(session.getAttribute("operation").equals("update"))
+    officer.setPensionDate(request.getParameter("PensionDate").trim());
+
 officer.setFullName(request.getParameter("FullName").trim());
 officer.setAddress(request.getParameter("Address").trim());
 officer.setOfficeLocation(request.getParameter("OfficeLocation").trim());
 officer.setOfficeLocationJoinDate(request.getParameter("OfficeLocationJoinDate").trim());
+//added 11/07
+officer.setAppointmentLetterRecived(request.getParameter("AppointmentLetterRecived").trim());
+officer.setFirstVoteChanged(request.getParameter("FirstVoteChanged").trim());
+officer.setVoteChangedAppointmentRecived(request.getParameter("VoteChangedAppointmentRecived").trim());
+officer.setETFRecivedDate(request.getParameter("ETFRecivedDate").trim());
+officer.setETFAmount(request.getParameter("ETFAmount").trim());
 
  OfficerDataProcessor officerDataProcessor=new OfficerDataProcessor();
  String dbOut="";

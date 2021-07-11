@@ -211,6 +211,46 @@ public class Officer {
     public void setOfficerEntryId(String OfficerEntryId) {
         this.OfficerEntryId = OfficerEntryId;
     }
+
+    public String getAppointmentLetterRecived() {
+        return AppointmentLetterRecived;
+    }
+
+    public void setAppointmentLetterRecived(String AppointmentLetterRecived) {
+        this.AppointmentLetterRecived = AppointmentLetterRecived;
+    }
+
+    public String getFirstVoteChanged() {
+        return FirstVoteChanged;
+    }
+
+    public void setFirstVoteChanged(String FirstVoteChanged) {
+        this.FirstVoteChanged = FirstVoteChanged;
+    }
+
+    public String getVoteChangedAppointmentRecived() {
+        return VoteChangedAppointmentRecived;
+    }
+
+    public void setVoteChangedAppointmentRecived(String VoteChangedAppointmentRecived) {
+        this.VoteChangedAppointmentRecived = VoteChangedAppointmentRecived;
+    }
+
+    public String getETFRecivedDate() {
+        return ETFRecivedDate;
+    }
+
+    public void setETFRecivedDate(String ETFRecivedDate) {
+        this.ETFRecivedDate = ETFRecivedDate;
+    }
+
+    public String getETFAmount() {
+        return ETFAmount;
+    }
+
+    public void setETFAmount(String ETFAmount) {
+        this.ETFAmount = ETFAmount;
+    }
     
  private String  OfficerEntryId;
  private String  IndexNumber;
@@ -236,5 +276,11 @@ public class Officer {
  private String  ETF;
  private String  PensionAge;
  private String  PensionDate;
-    
+ //added 11/07
+ private String AppointmentLetterRecived;
+ private String FirstVoteChanged;
+ private String VoteChangedAppointmentRecived;
+ private String ETFRecivedDate;
+ private String ETFAmount;
+  
 }

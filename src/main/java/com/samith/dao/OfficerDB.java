@@ -27,7 +27,8 @@ public class OfficerDB {
         InsertUpdateDeleteClass insertUpdateDeleteClass =new InsertUpdateDeleteClass(); 
         
         return insertUpdateDeleteClass.insertUpdateDeleteDB("insert into Officer(IndexNumber,EmpName,FullName,ContactNo,BirthDay,NIC,Gender,Address,OfficeType,Designation,Grade,OfficeLocation,OfficeLocationJoinDate,"
-                + "AreaFileNo,ServiceArea,FirstAppointmentDate,SecondAppointmentDate,SamurdhiAuthAppointmentDate,SalaryNo,SalaryIncreamentDate,ServiceType,ETF,PensionAge,PensionDate) "
+                + "AreaFileNo,ServiceArea,FirstAppointmentDate,SecondAppointmentDate,SamurdhiAuthAppointmentDate,SalaryNo,SalaryIncreamentDate,ServiceType,ETF,PensionAge,PensionDate,"
+                + "AppointmentLetterRecived,FirstVoteChanged,VoteChangedAppointmentRecived,ETFRecivedDate,ETFAmount) "
                 + "values ("
                + " '"+officer.getIndexNumber()+"',"
                + " '"+officer.getEmpName()+"' ,"
@@ -52,7 +53,13 @@ public class OfficerDB {
                + " '"+officer.getServiceType()+"',"
                + " '"+officer.getETF()+"',"
                + " '"+officer.getPensionAge()+"',"
-               + " '"+officer.getPensionDate()+"' )");
+               + " '"+officer.getPensionDate()+"',"
+               + " '"+officer.getAppointmentLetterRecived()+"',"
+               + " '"+officer.getFirstVoteChanged()+"',"
+               + " '"+officer.getVoteChangedAppointmentRecived()+"',"
+               + " '"+officer.getETFRecivedDate()+"',"
+               + " '"+officer.getETFAmount()+"'"
+               + ")");
           }
         
         
@@ -84,8 +91,13 @@ public class OfficerDB {
                + "ServiceType= '"+officer.getServiceType()+"',"
                + "ETF= '"+officer.getETF()+"',"
                + "PensionAge= '"+officer.getPensionAge()+"',"
-               + "PensionDate= '"+officer.getPensionDate()+"'  "
-               + "where OfficerEntryId='"+officer.getOfficerEntryId()+"';");
+               + "PensionDate= '"+officer.getPensionDate()+"' ,"
+               + "AppointmentLetterRecived= '"+officer.getAppointmentLetterRecived()+"', "
+               + "FirstVoteChanged= '"+officer.getFirstVoteChanged()+"', "
+               + "VoteChangedAppointmentRecived= '"+officer.getVoteChangedAppointmentRecived()+"', "
+               + "ETFRecivedDate= '"+officer.getETFRecivedDate()+"', "
+               + "ETFAmount= '"+officer.getETFAmount()+"'"
+               + " where OfficerEntryId='"+officer.getOfficerEntryId()+"';");
           }
         
 
@@ -142,6 +154,12 @@ public class OfficerDB {
                    officer.setPensionAge(rs.getString("PensionAge"));
                    officer.setPensionDate(rs.getString("PensionDate"));
                    officer.setOfficeLocation(rs.getString("OfficeLocation"));
+                   
+                   officer.setAppointmentLetterRecived(rs.getString("AppointmentLetterRecived"));
+                   officer.setFirstVoteChanged(rs.getString("FirstVoteChanged"));
+                   officer.setVoteChangedAppointmentRecived(rs.getString("VoteChangedAppointmentRecived"));
+                   officer.setETFRecivedDate(rs.getString("ETFRecivedDate"));
+                   officer.setETFAmount(rs.getString("ETFAmount"));
                }
                DBConnection.disconnect();
            } catch (SQLException e) {
@@ -150,6 +168,60 @@ public class OfficerDB {
            }     
            return officer;
        } 
+       
+       public  List<Officer>  getOfficerAllByPensionDate(String MonthsToAddPentionDate) throws Exception{
+           
+           RetrieveData retrieveClass =new RetrieveData();
+           List<Officer> officers = new ArrayList<>();
+           Officer officer = null;
+           
+           try{
+               ResultSet rs  = retrieveClass.getResultsFormDB("select *  from Officer  where PensionDate='"+MonthsToAddPentionDate+"'");
+               while (rs.next()) {
+                   officer = new Officer();
+                   officer.setOfficerEntryId(rs.getString("OfficerEntryId"));
+                   officer.setIndexNumber(rs.getString("IndexNumber"));
+                   officer.setEmpName(rs.getString("EmpName"));
+                   officer.setFullName(rs.getString("FullName"));
+                   officer.setContactNo(rs.getString("ContactNo"));
+                   officer.setBirthDay(rs.getString("BirthDay"));
+                   officer.setNIC(rs.getString("NIC"));
+                   officer.setGender(rs.getString("Gender"));
+                   officer.setAddress(rs.getString("Address"));
+                   officer.setOfficeType(rs.getString("OfficeType"));
+                   officer.setDesignation(rs.getString("Designation"));
+                   officer.setGrade(rs.getString("Grade"));
+                   officer.setOfficeLocation(rs.getString("OfficeLocation"));
+                   officer.setOfficeLocationJoinDate(rs.getString("OfficeLocationJoinDate"));
+                   officer.setAreaFileNo(rs.getString("AreaFileNo"));
+                   officer.setServiceArea(rs.getString("ServiceArea"));
+                   officer.setFirstAppointmentDate(rs.getString("FirstAppointmentDate"));
+                   officer.setSecondAppointmentDate(rs.getString("SecondAppointmentDate"));
+                   officer.setSamurdhiAuthAppointmentDate(rs.getString("SamurdhiAuthAppointmentDate"));
+                   officer.setSalaryNo(rs.getString("SalaryNo"));
+                   officer.setSalaryIncreamentDate(rs.getString("SalaryIncreamentDate"));
+                   officer.setServiceType(rs.getString("ServiceType"));
+                   officer.setETF(rs.getString("ETF"));
+                   officer.setPensionAge(rs.getString("PensionAge"));
+                   officer.setPensionDate(rs.getString("PensionDate"));
+                   officer.setOfficeLocation(rs.getString("OfficeLocation"));
+                   
+                   officer.setAppointmentLetterRecived(rs.getString("AppointmentLetterRecived"));
+                   officer.setFirstVoteChanged(rs.getString("FirstVoteChanged"));
+                   officer.setVoteChangedAppointmentRecived(rs.getString("VoteChangedAppointmentRecived"));
+                   officer.setETFRecivedDate(rs.getString("ETFRecivedDate"));
+                   officer.setETFAmount(rs.getString("ETFAmount"));
+                   
+                   officers.add(officer);
+               }
+               DBConnection.disconnect();
+           } catch (SQLException e) {
+               getLogger.getLog().debug(e.toString());
+                try{DBConnection.disconnect();}catch (SQLException ex) {}
+           }     
+           return officers;
+       } 
+       
     
        public  List<Officer>  getOfficerAllByIndexNumberWildCard(String whereString) throws Exception{
            
@@ -187,6 +259,11 @@ public class OfficerDB {
                    officer.setPensionDate(rs.getString("PensionDate"));
                    officer.setOfficeLocation(rs.getString("OfficeLocation"));
                    
+                   officer.setAppointmentLetterRecived(rs.getString("AppointmentLetterRecived"));
+                   officer.setFirstVoteChanged(rs.getString("FirstVoteChanged"));
+                   officer.setVoteChangedAppointmentRecived(rs.getString("VoteChangedAppointmentRecived"));
+                   officer.setETFRecivedDate(rs.getString("ETFRecivedDate"));
+                   officer.setETFAmount(rs.getString("ETFAmount"));
                    officers.add(officer);
                }
                DBConnection.disconnect();

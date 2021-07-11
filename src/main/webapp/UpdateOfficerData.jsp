@@ -35,6 +35,9 @@ List<String> ETFTypeList=com.samith.configs.VariableStorage.getETFTypeList();
 List<String> OfficeLocationList = com.samith.configs.VariableStorage.getOfficeLocationList();
 List<String> ServiceAreaList  = com.samith.configs.VariableStorage.getServiceAreaList();
 List<String> AreaFileNoList  = com.samith.configs.VariableStorage.getAreaFileNoList();
+List<String> DesignationList = com.samith.configs.VariableStorage.getDesignationList();
+List<String> GradeList = com.samith.configs.VariableStorage.getGradeList();
+List<String> YesNoList = com.samith.configs.VariableStorage.getYesNoList();
 //request.setAttribute("operation", "update");
 session.setAttribute("operation",  "update");
 session.setAttribute("OfficerEntryId",  officer.getOfficerEntryId());
@@ -213,7 +216,20 @@ session.setAttribute("OfficerEntryId",  officer.getOfficerEntryId());
           <h3>නිලතල තොරතුරු</h3>
         </legend>
         <div  class="account-details">
-          <div><label>තනතුර*</label><input type="text" name="Designation" value="<%=officer.getDesignation()%>"  required></div>
+          
+          <div>
+              <label>තනතුර</label>
+                <select name="Designation">
+                    <%
+                        for (int i = 0; i < DesignationList.size(); i++) {
+                    %>
+                    <option value=<%=DesignationList.get(i)%><% if(DesignationList.get(i).equals(officer.getDesignation())){selected=" selected";} %><%=selected%><%selected="";%>><%=DesignationList.get(i)%></option>
+                    <%
+                        }
+                    %>
+             </select>
+           </div>
+          
           <div>
               <label>නිලධාරි වර්ගය</label>
                 <select name="OfficeType">
@@ -226,7 +242,20 @@ session.setAttribute("OfficerEntryId",  officer.getOfficerEntryId());
                     %>
              </select>
            </div>
-           <div><label> ශ්‍රේණිය</label><input type="text" name="Grade" value="<%=officer.getGrade()%>" required></div>
+             
+          <div>
+              <label>  ශ්‍රේණිය  </label>
+                <select name="Grade">
+                    <%
+                        for (int i = 0; i < GradeList.size(); i++) {
+                    %>
+                    <option value=<%=GradeList.get(i)%><% if(GradeList.get(i).equals(officer.getGrade())){selected=" selected";} %><%=selected%><%selected="";%>><%=GradeList.get(i)%></option>
+                    <%
+                        }
+                    %>
+             </select>
+           </div>
+           
         </div>
       </fieldset>
       <fieldset>
@@ -278,6 +307,46 @@ session.setAttribute("OfficerEntryId",  officer.getOfficerEntryId());
             <div><label>මුල් පත්වීම් දිනය </label><input type="date" name="FirstAppointmentDate" value="<%=officer.getFirstAppointmentDate()%>"></div>
             <div><label>නියාමක පත්වීම </label><input type="date" name="SecondAppointmentDate" value="<%=officer.getSecondAppointmentDate()%>"></div>
             <div><label>සමෘද්ධි සංවර්ධන නිලධාරි (සමෘ.අධිකාරි) පත්වීම් දිනය </label><input type="date" name="SamurdhiAuthAppointmentDate"  value="<%=officer.getSamurdhiAuthAppointmentDate()%>"></div>
+       
+           <div>
+              <label>අන්තර්ග්‍රහණ පත්වීම් ලිපිය ලැබීම</label>
+                <select name="AppointmentLetterRecived">
+                    <%
+                        for (int i = 0; i < YesNoList.size(); i++) {
+                    %>
+                     <option value=<%=YesNoList.get(i)%><% if(YesNoList.get(i).equals(officer.getAppointmentLetterRecived())){selected=" selected";} %> <%=selected%><%selected="";%>><%=YesNoList.get(i)%></option>
+                    <%
+                        }
+                    %>
+             </select>
+            </div>            
+            
+           <div>
+              <label>පලමුව මනාපය පලකීරීමෙන් පසු නැවත මනාපය වෙනස් කිරීම </label>
+                <select name="FirstVoteChanged">
+                    <%
+                        for (int i = 0; i < YesNoList.size(); i++) {
+                    %>
+                     <option value=<%=YesNoList.get(i)%><% if(YesNoList.get(i).equals(officer.getFirstVoteChanged())){selected=" selected";} %> <%=selected%><%selected="";%>><%=YesNoList.get(i)%></option>
+                    <%
+                        }
+                    %>
+             </select>
+            </div>        
+            
+           <div>
+              <label>නැවත මනාපය වෙනස් කල පසු නව පත්වීම් ලිපිය ලැබීම </label>
+                <select name="VoteChangedAppointmentRecived">
+                    <%
+                        for (int i = 0; i < YesNoList.size(); i++) {
+                    %>
+                     <option value=<%=YesNoList.get(i)%><% if(YesNoList.get(i).equals(officer.getVoteChangedAppointmentRecived())){selected=" selected";} %> <%=selected%><%selected="";%>><%=YesNoList.get(i)%></option>
+                    <%
+                        }
+                    %>
+             </select>
+            </div> 
+
         </div>
       </fieldset>
       <fieldset>
@@ -311,6 +380,9 @@ session.setAttribute("OfficerEntryId",  officer.getOfficerEntryId());
                     %>
              </select>
             </div>
+              <div><label>පාරිතෝෂික මුදල ලබාගෙන ඇත්නම් දිනය</label><input type="date" name="ETFRecivedDate" value="<%=officer.getETFRecivedDate()%>"></div>
+              <div><label>පාරිතෝෂික මුදල</label><input type="number" name="ETFAmount" value="<%=officer.getETFAmount()%>"></div>
+                 
         </div>
       </fieldset>
       

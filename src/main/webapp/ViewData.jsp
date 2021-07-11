@@ -243,6 +243,28 @@ session.setAttribute("operation",  "insert");
           <div class="checkbox">
             <label><input type="checkbox" name="PensionDate" value="PensionDate" checked><span>විශ්‍රාම ලබන  දිනය</span></label>
           </div>
+            <br>
+          <div class="checkbox">
+            <label><input type="checkbox" name="AppointmentLetterRecived" value="AppointmentLetterRecived"><span>අන්තර්ග්‍රහණ පත්වීම් ලිපිය ලැබීම </span></label>
+          </div>
+            
+           <br>
+          <div class="checkbox">
+            <label><input type="checkbox" name="FirstVoteChanged" value="FirstVoteChanged"><span>පලමුව මනාපය පලකීරීමෙන් පසු නැවත මනාපය වෙනස් කිරීම </span></label>
+          </div>
+           <br>
+          <div class="checkbox">
+            <label><input type="checkbox" name="VoteChangedAppointmentRecived" value="VoteChangedAppointmentRecived"><span>නැවත මනාපය වෙනස් කල පසු නව පත්වීම් ලිපිය ලැබීම </span></label>
+          </div>
+           <br>
+          <div class="checkbox">
+            <label><input type="checkbox" name="ETFRecivedDate" value="ETFRecivedDate"><span>පාරිතෝෂික මුදල ලබාගෙන ඇත්නම් දිනය </span></label>
+          </div>
+           <br>
+          <div class="checkbox">
+            <label><input type="checkbox" name="ETFAmount" value="ETFAmount"><span>පාරිතෝෂික මුදල </span></label>
+          </div>
+           
       </fieldset>     
 
       <button type="submit">නිලධාරී දත්ත බලමු</button>

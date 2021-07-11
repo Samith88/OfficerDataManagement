@@ -211,7 +211,38 @@ try{
 } catch (Exception e) {
          wantedValues.put("PensionDate","");
 }
+//added 11/07
+try{	
+    if(!request.getParameter("AppointmentLetterRecived").equals(null))
+        wantedValues.put("AppointmentLetterRecived","AppointmentLetterRecived");
+} catch (Exception e) {
+         wantedValues.put("AppointmentLetterRecived","");
+}
+try{	
+    if(!request.getParameter("FirstVoteChanged").equals(null))
+        wantedValues.put("FirstVoteChanged","FirstVoteChanged");
+} catch (Exception e) {
+         wantedValues.put("FirstVoteChanged","");
+}
+try{	
+    if(!request.getParameter("VoteChangedAppointmentRecived").equals(null))
+        wantedValues.put("VoteChangedAppointmentRecived","VoteChangedAppointmentRecived");
+} catch (Exception e) {
+         wantedValues.put("VoteChangedAppointmentRecived","");
+}
+try{	
+    if(!request.getParameter("ETFRecivedDate").equals(null))
+        wantedValues.put("ETFRecivedDate","ETFRecivedDate");
+} catch (Exception e) {
+         wantedValues.put("ETFRecivedDate","");
+}
 
+try{	
+    if(!request.getParameter("ETFAmount").equals(null))
+        wantedValues.put("ETFAmount","ETFAmount");
+} catch (Exception e) {
+         wantedValues.put("ETFAmount","");
+}
 %>
 <!DOCTYPE html>
 <html>
@@ -307,6 +338,16 @@ try{
             <td><b><%=officer.getPensionAge()%></b></td>
         <% }  if(!wantedValues.get("PensionDate").equals("")){ %>
             <td><b><%=officer.getPensionDate()%></b></td>
+        <% }  if(!wantedValues.get("AppointmentLetterRecived").equals("")){ %>
+            <td><b><%=officer.getAppointmentLetterRecived()%></b></td>
+        <% }  if(!wantedValues.get("FirstVoteChanged").equals("")){ %>
+            <td><b><%=officer.getFirstVoteChanged()%></b></td>
+        <% }  if(!wantedValues.get("VoteChangedAppointmentRecived").equals("")){ %>
+            <td><b><%=officer.getVoteChangedAppointmentRecived()%></b></td>
+        <% }  if(!wantedValues.get("ETFRecivedDate").equals("")){ %>
+            <td><b><%=officer.getETFRecivedDate()%></b></td>  
+        <% }  if(!wantedValues.get("ETFAmount").equals("")){ %>
+            <td><b><%=officer.getETFAmount()%></b></td>  
        <%  }  %>
        </tr>
        
@@ -321,10 +362,12 @@ try{
        </fieldset>
      </div>
     <div>
+          <br/>  <br/>
       <fieldset>
           <div>
              <a href="main.jsp">නැවත මුල් පිටුවට</a>
           </div>
+          <br/>
           <div>
              <a href="ViewData.jsp">නැවත නිලධාරි තොරතුරු දැක්මට</a>
           </div>

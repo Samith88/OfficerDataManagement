@@ -55,6 +55,13 @@ public class VariableStorage {
         ETFTypeList.add("ලබා_නැත"); 
         return ETFTypeList;
     }
+    
+    public static List<String> getYesNoList() {
+        YesNoList.clear();
+        YesNoList.add("ඇත"); 
+        YesNoList.add("නැත"); 
+        return YesNoList;
+    }
 
     public static List<String> getOfficeLocationList() {
         OfficeLocationList.clear();
@@ -95,14 +102,14 @@ public class VariableStorage {
         AreaFileNoList.add("==============වැත්තැව");
         AreaFileNoList.add("මිනිගමුව");
         AreaFileNoList.add("තැන්නෙවෙල");
-        AreaFileNoList.add("මිනිගමුව ඉහල");
+        AreaFileNoList.add("මිනිගමුව_ඉහල");
         AreaFileNoList.add("හියදල");
-        AreaFileNoList.add("හියදල වල්පොල");
+        AreaFileNoList.add("හියදල_වල්පොල");
         AreaFileNoList.add("වැත්තැව");
         AreaFileNoList.add("පෞල්පාව");
-        AreaFileNoList.add("හිත්ගොඩ වල්පොල");
+        AreaFileNoList.add("හිත්ගොඩ_වල්පොල");
         AreaFileNoList.add("කුරගම");
-        AreaFileNoList.add("කුරගම උතුරු");
+        AreaFileNoList.add("කුරගම_උතුරු");
         AreaFileNoList.add("පරණගම");
         AreaFileNoList.add("ගුණදාහ");
         AreaFileNoList.add("==============උඩුව");
@@ -110,18 +117,18 @@ public class VariableStorage {
         AreaFileNoList.add("උදලාගම");
         AreaFileNoList.add("උඩුව");
         AreaFileNoList.add("පොත්තිල");
-        AreaFileNoList.add("මැදගොඩ පහල");
-        AreaFileNoList.add("මැදගොඩ ඉහල");
-        AreaFileNoList.add("කිනිගම නැගෙනහිර");
-        AreaFileNoList.add("කිනිගම බටහිර");
+        AreaFileNoList.add("මැදගොඩ_පහල");
+        AreaFileNoList.add("මැදගොඩ_ඉහල");
+        AreaFileNoList.add("කිනිගම_නැගෙනහිර");
+        AreaFileNoList.add("කිනිගම_බටහිර");
         AreaFileNoList.add("කළුවන");
         AreaFileNoList.add("කන්නදේනිය");
         AreaFileNoList.add("පුබ්බිලිය");
         AreaFileNoList.add("බරන්දර");
         AreaFileNoList.add("ඔපල්ල");
         AreaFileNoList.add("==============ගලගෙදර");
-        AreaFileNoList.add("ගලගෙදර නැගෙනහිර");
-        AreaFileNoList.add("ගලගෙදර බටහිර");
+        AreaFileNoList.add("ගලගෙදර_නැගෙනහිර");
+        AreaFileNoList.add("ගලගෙදර_බටහිර");
         AreaFileNoList.add("රොක්හිල්");
         AreaFileNoList.add("අක්කරවත්ත");
         AreaFileNoList.add("බොනකොට්");
@@ -132,8 +139,8 @@ public class VariableStorage {
         AreaFileNoList.add("කොබ්බෙගල");
         AreaFileNoList.add("අම්බගහහේන");
         AreaFileNoList.add("ගලබාව");
-        AreaFileNoList.add("මීගහහේන උතුර");
-        AreaFileNoList.add("මීගහහේන දකුණ");
+        AreaFileNoList.add("මීගහහේන_උතුර");
+        AreaFileNoList.add("මීගහහේන_දකුණ");
         AreaFileNoList.add("==============නියංගොඩ");
         AreaFileNoList.add("නියංගොඩ");
         AreaFileNoList.add("දියපලගොඩ");
@@ -143,12 +150,12 @@ public class VariableStorage {
         AreaFileNoList.add("ගැලෙනවත්ත");
         AreaFileNoList.add("කුඹුරේගම");
         AreaFileNoList.add("අලවත්තේගම");
-        AreaFileNoList.add("කදන්හෙන නැගෙනහිර");
+        AreaFileNoList.add("කදන්හෙන_නැගෙනහිර");
         AreaFileNoList.add("නාමල්තැන්න");
         AreaFileNoList.add("මාරවනගොඩ");
         AreaFileNoList.add("නියබෙපොල");
         AreaFileNoList.add("ඉඩමෙගම");
-        AreaFileNoList.add("හේනේගම පල්කුඹුර");
+        AreaFileNoList.add("හේනේගම_පල්කුඹුර");
         AreaFileNoList.add("පල්ලෙකොටුව");
         
         return AreaFileNoList;
@@ -183,6 +190,39 @@ public class VariableStorage {
         return OptionsList;
     }
 
+    public static List<String> getDesignationList() {
+        DesignationList.clear();
+        DesignationList.add("===============නිලධාරි");
+        DesignationList.add("ආයතන_විෂය_බාර_නිලධාරි");
+        DesignationList.add("සමාජ_ආරක්ශන_විෂයබාර_නිලධාරි");
+        DesignationList.add("සහනාධාර_විෂයබාර_නිලධාරි");
+        DesignationList.add("ගිනුම්_විෂයබාර_නිලධාරි");
+        DesignationList.add("ප්‍රජාමුල_විෂයබාර_නිලධාරි");
+        DesignationList.add("ව්‍යාපෘති_සහාකර");
+        DesignationList.add("ගිනුම්_ලිපිකාර");
+        DesignationList.add("පොත්_තබන්නා");
+        DesignationList.add("වසම්_බාර_නිලධාරි ");
+        DesignationList.add("කලාප_සහාකර");
+        DesignationList.add("සහාකර_කලමණාකරු");
+        DesignationList.add("==============කලමණාකාර");
+        DesignationList.add("මුලස්තාන_කලමණාකරු");
+        DesignationList.add("මහසංගම්_කලමණාකරු");
+        DesignationList.add("කලාප_කලමණාකරු");
+        DesignationList.add("බැංකු_කලමණාකරු");
+        DesignationList.add("ව්‍යාපෘති_කලමණාකරු");
+        return DesignationList;
+    }
+    
+    public static List<String> getGradeList() {
+        GradeList.clear();
+        GradeList.add("1");
+        GradeList.add("2");
+        GradeList.add("3");
+        GradeList.add("විශේෂ");
+        return GradeList;
+    }
+    
+    
     public static String getUsername() {
         return username;
     }
@@ -191,6 +231,33 @@ public class VariableStorage {
         return password;
     }
 
+    public static String getDefaultPentionAge() {
+        return defaultPentionAge;
+    }
+
+    public static int getPlusMonthsPentionDate() {
+        return PlusMonthsPentionDate;
+    }
+    public static String getEuser() {
+        return Euser;
+    }
+
+    public static String getEpass() {
+        return Epass;
+    }
+
+    public static String getToAddress() {
+        return ToAddress;
+    }
+
+    public static String getSmtpHost() {
+        return SmtpHost;
+    }
+
+    public static String getSmtpPort() {
+        return SmtpPort;
+    }
+    
     private static final List<String> AgeList =new ArrayList<String>();
     private static final List<String> GenderList =new ArrayList<String>();
     private static final List<String> OfficerTypeList =new ArrayList<String>();
@@ -199,8 +266,21 @@ public class VariableStorage {
     private static final List<String> OfficeLocationList =new ArrayList<String>();
     private static final List<String> ServiceAreaList =new ArrayList<String>();
     private static final List<String> AreaFileNoList=new ArrayList<String>();
+    private static final List<String> DesignationList=new ArrayList<String>();
     private static final Map<String, String> OptionsList = new LinkedHashMap<String, String>();
+    private static final List<String> GradeList =new ArrayList<String>();
+    private static final List<String> YesNoList =new ArrayList<String>();
     private static final String username="inosam";
     private static final String password="inosam";
+    private static final String defaultPentionAge="55";
+    private static final int PlusMonthsPentionDate=7;
+    private static final String Euser="coc.samith@gmail.com";
+    private static final String Epass="samith1988";
+    private static final String ToAddress="samithdissanayake@gmail.com";
+    private static final String SmtpHost= "smtp.gmail.com";
+    private static final String SmtpPort= "465";
+
+
+
 
 }
