@@ -270,12 +270,12 @@ public class VariableStorage {
     private static final Map<String, String> OptionsList = new LinkedHashMap<String, String>();
     private static final List<String> GradeList =new ArrayList<String>();
     private static final List<String> YesNoList =new ArrayList<String>();
-    private static final String username="";
-    private static final String password="";
+    private static final String username="inosam";
+    private static final String password="inosam";
     private static final String defaultPentionAge="55";
     private static final int PlusMonthsPentionDate=7;
-    private static final String Euser="";
-    private static final String Epass="";
+    private static final String Euser="coc.samith@gmail.com";
+    private static final String Epass="samith1988";
     private static final String ToAddress="samithdissanayake@gmail.com";
     private static final String SmtpHost= "smtp.gmail.com";
     private static final String SmtpPort= "587";
