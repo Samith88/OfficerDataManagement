@@ -100,9 +100,6 @@ public class EmailProcessor {
     }
 
     public String getEmailBody(List<Officer> officers){
-    
-        String startEmail="<html><body>";
-        String endEmail="</table></body></html>";
         String fullTable="";
         
         for (int i = 0; i < officers.size(); i++) {
@@ -116,12 +113,11 @@ public class EmailProcessor {
              oneOfficer += "<tr><td><b> සේවා ස්තානය : </b></td><td><b>"+officer.getOfficeLocation()+"</b></td></tr>";
              oneOfficer += "<tr><td><b>  වැටුප් අංකය   : </b></td><td><b>"+officer.getSalaryNo()+"</b></td></tr>";
              oneOfficer += "<tr><td><b>  වැටුප් වර්ධක දිනය   : </b></td><td><b>"+officer.getSalaryIncreamentDate()+"</b></td></tr>";
-             oneOfficer += "<tr><td>  </td><td>  </td></tr>";
-             oneOfficer += "<tr><td>  </td><td>  </td></tr>";
+             oneOfficer += "<tr><td>****** </td><td> ******</td></tr>";
              
              fullTable += oneOfficer;
         }
-        return startEmail+"<h1>"+"නිලධාරි විශ්‍රාම  තොරතුරු:"+getCurrentDate()+"<h1>"+"<table>" +  fullTable+endEmail;
+        return "<html><body>"+"<h1>"+"නිලධාරි විශ්‍රාම  තොරතුරු:"+getCurrentDate()+"<h1>"+"<table>" +  fullTable+"</table></body></html>";
     }
     
     private String getCurrentDate(){
