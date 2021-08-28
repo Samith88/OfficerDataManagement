@@ -4,6 +4,7 @@
     Author     : UDISSSA1
 --%>
 
+<%@page import="com.samith.logging.getLogger"%>
 <%@page  contentType="text/html;charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@page import="com.samith.configs.VariableStorage"%>
 
@@ -16,7 +17,7 @@
 
                 if (cookies == null) {
                 response.sendRedirect("index.jsp");
-                System.out.print("No Cookies!");
+                getLogger.getLog().debug("No Cookies!");
                 }
     %>
 <!DOCTYPE html>

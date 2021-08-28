@@ -4,6 +4,7 @@
     Author     : UDISSSA1
 --%>
 
+<%@page import="com.samith.logging.getLogger"%>
 <%@page import="com.samith.configs.VariableStorage"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
@@ -16,7 +17,7 @@
 
                 if (cookies == null) {
                 response.sendRedirect("index.jsp");
-                System.out.print("No Cookies!");
+                getLogger.getLog().debug("No Cookies!");
                 }
 %>
 <%
@@ -33,7 +34,7 @@ List<String> DesignationList = com.samith.configs.VariableStorage.getDesignation
 List<String> GradeList = com.samith.configs.VariableStorage.getGradeList();
 List<String> YesNoList = com.samith.configs.VariableStorage.getYesNoList();
 //request.setAttribute("operation", "insert");
-session.setAttribute("operation",  "insert");
+//session.setAttribute("operation",  "insert");
 %>
 <!DOCTYPE html>
 <html>
@@ -180,10 +181,8 @@ session.setAttribute("operation",  "insert");
           <div>
               <div><label>අනු අංකය*</label><input type="text" name="IndexNumber"  required></div>
             <div><label>මුලකුරු සමග නම*</label><input type="text" name="EmpName" required></div>
-            <div><label>සම්පුර්න නම*</label><input type="text" name="FullName" required></div>
-            <div><label>දුරකථන අංකය</label><input type="text" name="ContactNo"></div>
+            <div><label>සම්පුර්න නම*</label><input type="text" name="FullName" ></div>
             <div><label>හැදුනුම්පත් අංකය*</label><input type="text" name="NIC" required></div>
-             <div><label>ලිපිනය</label><input type="text" name="Address" ></div>
           </div>
           <div>
             <div>
@@ -199,7 +198,9 @@ session.setAttribute("operation",  "insert");
                     %>      
              </select>
             </div>
+             <div><label>දුරකථන අංකය</label><input type="text" name="ContactNo"></div>
              <div><label>උපන් දිනය</label><input type="date" name="BirthDay" required></div>
+              <div><label>ලිපිනය</label><input type="text" name="Address" ></div>
           </div>
         </div>
       </fieldset>
@@ -223,7 +224,7 @@ session.setAttribute("operation",  "insert");
            </div>
           
           <div>
-              <label>විෂය</label>
+              <label>තනතුර</label>
                 <select name="OfficeType">
                     <%
                         for (int i = 0; i < OfficerTypeList.size(); i++) {
@@ -290,6 +291,7 @@ session.setAttribute("operation",  "insert");
                     %>
            </select>
            </div>
+           <div><label>කලාපය අනුව ගොණු අංකය</label><input type="text" name="AreaFile"></div>
         </div>
       </fieldset>
       <fieldset>
@@ -406,7 +408,7 @@ session.setAttribute("operation",  "insert");
             <input type="checkbox" name="checkbox" required><span>තොරතුරු තහවුරු කරන ලදි</span>
           </div>
       </fieldset>
-      <button type="submit">තොරතුරු ඇතුලත් කිරිම</button>
+      <button type="submit" name="submit" value="insert">තොරතුරු ඇතුලත් කිරිම</button>
     </form>
     </div> 
     <div>

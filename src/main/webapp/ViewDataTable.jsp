@@ -19,34 +19,23 @@ String option1textIn="";
 try{
     if(!request.getParameter("option1text").equals(""))
         option1textIn = request.getParameter("option1text").trim();
-        System.out.println("option1textIn is:"+option1textIn);
-} catch (Exception e) {
-          System.out.print(e);
-}
+} catch (Exception e) {e.toString();}
 String option2textIn="";
 try{	
     if(!request.getParameter("option2text").equals(""))
         option2textIn = request.getParameter("option2text").trim();
-        System.out.println("option2textIn is:"+option2textIn);
-} catch (Exception e) {
-         e.printStackTrace();
-         System.out.print(e);
-}
+} catch (Exception e) {e.toString();}
 String option1selectIn="";
 try{
     if(!request.getParameter("option1text").equals(""))
         option1selectIn =request.getParameter("option1select");
-} catch (Exception e) {
-         e.printStackTrace();
-}
+} catch (Exception e) {e.toString();}
 
 String option2selectIn="";
 try{
     if(!request.getParameter("option2text").equals(""))
         option2selectIn =request.getParameter("option2select");
-} catch (Exception e) {
-         e.printStackTrace();
-}
+} catch (Exception e) {e.toString();}
 
 //List<Officer>  officers = officerDataProcessor.getOfficerAllByIndexNumberWildCard(request.getParameter("GetIndexNumber").trim());
 List<Officer> officers = new ArrayList<>();
@@ -62,69 +51,78 @@ try{
     if(!request.getParameter("IndexNumber").equals(null))
         wantedValues.put("IndexNumber","IndexNumber");
 } catch (Exception e) {
-         wantedValues.put("IndexNumber","");
+            wantedValues.put("IndexNumber","");
+            e.toString();
 }
 try{
     if(!request.getParameter("EmpName").equals(null))
         wantedValues.put("EmpName","EmpName");
 } catch (Exception e) {
         wantedValues.put("EmpName","");
+        e.toString();
 }
 try{
     if(!request.getParameter("FullName").equals(null))
         wantedValues.put("FullName","FullName");
 } catch (Exception e) {
         wantedValues.put("FullName",""); 
+        e.toString();
 }
 try{    
     if(!request.getParameter("ContactNo").equals(null))
         wantedValues.put("ContactNo","ContactNo");
 } catch (Exception e) {
        wantedValues.put("ContactNo","");
+        e.toString();
 }
 try{        
     if(!request.getParameter("BirthDay").equals(null))
         wantedValues.put("BirthDay","BirthDay");
 } catch (Exception e) {
-        e.printStackTrace();
        wantedValues.put("BirthDay","");
+        e.toString();
 }
 try{
     if(!request.getParameter("NIC").equals(null))
         wantedValues.put("NIC","NIC");
 } catch (Exception e) {
         wantedValues.put("NIC","");
+        e.toString();
 }
 try{       
     if(!request.getParameter("Gender").equals(null))
         wantedValues.put("Gender","Gender");
 } catch (Exception e) {
         wantedValues.put("Gender","");
+        e.toString();
 }
 try{  
     if(!request.getParameter("Gender").equals(null))
         wantedValues.put("Gender","Gender");
 } catch (Exception e) {
        wantedValues.put("Gender","");
+        e.toString();
 }
 try{ 
     if(!request.getParameter("Address").equals(null))
         wantedValues.put("Address","Address");
 } catch (Exception e) {
       wantedValues.put("Address","");
+        e.toString();
 }
 try{  
     if(!request.getParameter("OfficeType").equals(null))
         wantedValues.put("OfficeType","OfficeType");
 } catch (Exception e) {
-        e.printStackTrace();
       wantedValues.put("OfficeType",""); 
+        e.toString();
 }
 try{ 
     if(!request.getParameter("Designation").equals(null))
         wantedValues.put("Designation","Designation");
 } catch (Exception e) {
       wantedValues.put("Designation","");
+        e.toString();
 }
 try{      
     if(!request.getParameter("Grade").equals(null))
@@ -132,84 +130,98 @@ try{
 } catch (Exception e) {
         e.printStackTrace();
        wantedValues.put("Grade","");
+        e.toString();
 }
 try{   
     if(!request.getParameter("OfficeLocation").equals(null))
         wantedValues.put("OfficeLocation","OfficeLocation");
 } catch (Exception e) {
        wantedValues.put("OfficeLocation","");
+        e.toString();
 }
 try{     
     if(!request.getParameter("OfficeLocationJoinDate").equals(null))
         wantedValues.put("OfficeLocationJoinDate","OfficeLocationJoinDate");
 } catch (Exception e) {
        wantedValues.put("OfficeLocationJoinDate","");
+        e.toString();
 }
 try{  
     if(!request.getParameter("AreaFileNo").equals(null))
         wantedValues.put("AreaFileNo","AreaFileNo");
 } catch (Exception e) {
         wantedValues.put("AreaFileNo","");
+        e.toString();
 }
 try{
     if(!request.getParameter("ServiceArea").equals(null))
         wantedValues.put("ServiceArea","ServiceArea");
 } catch (Exception e) {
          wantedValues.put("ServiceArea","");
+        e.toString();
 }
 try{
     if(!request.getParameter("FirstAppointmentDate").equals(null))
         wantedValues.put("FirstAppointmentDate","FirstAppointmentDate");
 } catch (Exception e) {
          wantedValues.put("FirstAppointmentDate","");
+        e.toString();
 }
 try{
     if(!request.getParameter("SecondAppointmentDate").equals(null))
         wantedValues.put("SecondAppointmentDate","SecondAppointmentDate");
 } catch (Exception e) {
         wantedValues.put("SecondAppointmentDate","");
+        e.toString();
 }
 try{  
     if(!request.getParameter("SamurdhiAuthAppointmentDate").equals(null))
         wantedValues.put("SamurdhiAuthAppointmentDate","SamurdhiAuthAppointmentDate");
 } catch (Exception e) {
         wantedValues.put("SamurdhiAuthAppointmentDate","");
+        e.toString();
 }
 try{ 	
     if(!request.getParameter("SalaryNo").equals(null))
         wantedValues.put("SalaryNo","SalaryNo");
 } catch (Exception e) {
         wantedValues.put("SalaryNo","");
+        e.toString();
 }
 try{ 	
     if(!request.getParameter("SalaryIncreamentDate").equals(null))
         wantedValues.put("SalaryIncreamentDate","SalaryIncreamentDate");
 } catch (Exception e) {
         wantedValues.put("SalaryIncreamentDate","");
+        e.toString();
 }
 try{ 	
     if(!request.getParameter("ServiceType").equals(null))
         wantedValues.put("ServiceType","ServiceType");
 } catch (Exception e) {
         wantedValues.put("ServiceType","");
+        e.toString();
 }
 try{ 	
     if(!request.getParameter("ETF").equals(null))
         wantedValues.put("ETF","ETF");
 } catch (Exception e) {
         wantedValues.put("ETF","");
+        e.toString();
 }
 try{ 	
     if(!request.getParameter("PensionAge").equals(null))
         wantedValues.put("PensionAge","PensionAge");
 } catch (Exception e) {
-        wantedValues.put("PensionAge","");	
+        wantedValues.put("PensionAge","");
+        e.toString();
 }
 try{	
     if(!request.getParameter("PensionDate").equals(null))
         wantedValues.put("PensionDate","PensionDate");
 } catch (Exception e) {
          wantedValues.put("PensionDate","");
+        e.toString();
 }
 //added 11/07
 try{	
@@ -217,24 +229,28 @@ try{
         wantedValues.put("AppointmentLetterRecived","AppointmentLetterRecived");
 } catch (Exception e) {
          wantedValues.put("AppointmentLetterRecived","");
+        e.toString();
 }
 try{	
     if(!request.getParameter("FirstVoteChanged").equals(null))
         wantedValues.put("FirstVoteChanged","FirstVoteChanged");
 } catch (Exception e) {
          wantedValues.put("FirstVoteChanged","");
+        e.toString();
 }
 try{	
     if(!request.getParameter("VoteChangedAppointmentRecived").equals(null))
         wantedValues.put("VoteChangedAppointmentRecived","VoteChangedAppointmentRecived");
 } catch (Exception e) {
          wantedValues.put("VoteChangedAppointmentRecived","");
+        e.toString();
 }
 try{	
     if(!request.getParameter("ETFRecivedDate").equals(null))
         wantedValues.put("ETFRecivedDate","ETFRecivedDate");
 } catch (Exception e) {
          wantedValues.put("ETFRecivedDate","");
+        e.toString();
 }
 
 try{	
@@ -242,6 +258,15 @@ try{
         wantedValues.put("ETFAmount","ETFAmount");
 } catch (Exception e) {
          wantedValues.put("ETFAmount","");
+        e.toString();
+}
+
+try{	
+    if(!request.getParameter("AreaFile").equals(null))
+        wantedValues.put("AreaFile","AreaFile");
+} catch (Exception e) {
+         wantedValues.put("AreaFile","");
+        e.toString();
 }
 %>
 <!DOCTYPE html>
@@ -252,6 +277,7 @@ try{
         <style>
              tr:nth-child(even) {background-color: #33FF93;}
        </style>
+       <script src="js/script.js" type="text/javascript"></script>
     </head>
     <body>
         <h1>නිලධාරී දත්ත</h1>
@@ -267,7 +293,6 @@ try{
         <%
         try{
          for (Map.Entry<String, String> entry : wantedValues.entrySet()) {
-                System.out.println(entry.getKey() + "/" + entry.getValue());
                  if(!entry.getValue().toString().equals("")){
          %>
             <td><b><%=entry.getKey() %></b></td>
@@ -348,6 +373,8 @@ try{
             <td><b><%=officer.getETFRecivedDate()%></b></td>  
         <% }  if(!wantedValues.get("ETFAmount").equals("")){ %>
             <td><b><%=officer.getETFAmount()%></b></td>  
+        <% }  if(!wantedValues.get("AreaFile").equals("")){ %>
+            <td><b><%=officer.getAreaFile()%></b></td> 
        <%  }  %>
        </tr>
        
@@ -364,6 +391,11 @@ try{
     <div>
           <br/>  <br/>
       <fieldset>
+          <br/>
+          <div>
+            <button onclick="exportTableToCSV('officers.csv')">නිලධාරි තොරතුරු බාගත කිරීම</button>
+          </div>
+           <br/>
           <div>
              <a href="main.jsp">නැවත මුල් පිටුවට</a>
           </div>

@@ -6,8 +6,8 @@
 package com.samith.controller;
 
 import com.samith.base.Officer;
-import com.samith.configs.MethodStorage;
 import com.samith.dao.OfficerDB;
+import com.samith.logging.getLogger;
 import java.text.ParseException;
 import java.util.List;
 
@@ -57,7 +57,7 @@ public class OfficerDataProcessor {
         if(whereString.equals(" where "))
             whereString="";
         
-        System.out.println(whereString);
+        getLogger.getLog().debug(whereString);
          OfficerDB officerDB=new OfficerDB();
          return officerDB.getOfficerAllByIndexNumberWildCard(whereString);
     }

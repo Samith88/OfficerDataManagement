@@ -24,7 +24,6 @@ public class InsertUpdateDeleteClass {
             try (PreparedStatement statement = (PreparedStatement) connection.prepareStatement(sql)) {
                 res = statement.executeUpdate();
                getLogger.getLog().debug(sql);
-                System.out.println(sql);
             }
             if(res>0){
                 result = true;
@@ -32,7 +31,6 @@ public class InsertUpdateDeleteClass {
             DBConnection.disconnect();
         } catch (Exception e) {
             getLogger.getLog().debug(e.toString());
-            System.out.println(e.toString());
         }
         return result;
     }

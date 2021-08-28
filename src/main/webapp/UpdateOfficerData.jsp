@@ -4,6 +4,7 @@
     Author     : UDISSSA1
 --%>
 
+<%@page import="com.samith.logging.getLogger"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.TreeMap"%>
 <%@page import="java.util.SortedMap"%>
@@ -20,7 +21,7 @@
 
                 if (cookies == null) {
                 response.sendRedirect("index.jsp");
-                System.out.print("No Cookies!");
+                getLogger.getLog().debug("No Cookies!");
                 }
 %>
 <%
@@ -39,8 +40,8 @@ List<String> DesignationList = com.samith.configs.VariableStorage.getDesignation
 List<String> GradeList = com.samith.configs.VariableStorage.getGradeList();
 List<String> YesNoList = com.samith.configs.VariableStorage.getYesNoList();
 //request.setAttribute("operation", "update");
-session.setAttribute("operation",  "update");
-session.setAttribute("OfficerEntryId",  officer.getOfficerEntryId());
+//session.setAttribute("operation",  "update");
+//session.setAttribute("OfficerEntryId",  officer.getOfficerEntryId());
 %>
 
 
@@ -186,12 +187,11 @@ session.setAttribute("OfficerEntryId",  officer.getOfficerEntryId());
         </legend>
         <div  class="personal-details">
           <div>
+              <div><label>නිලධාරි අංකය(වෙනස් නොකරන්න)</label><input type="text" name="OfficerEntryId" value="<%=officer.getOfficerEntryId()%>" ></div>
             <div><label>අනු අංකය*</label><input type="text" name="IndexNumber" value="<%=officer.getIndexNumber()%>"  required></div>
             <div><label>මුලකුරු සමග නම*</label><input type="text" name="EmpName" value="<%=officer.getEmpName()%>"  required></div>
             <div><label>සම්පුර්න නම*</label><input type="text" name="FullName" value="<%=officer.getFullName()%>"  required></div>
-            <div><label>දුරකථන අංකය</label><input type="text" name="ContactNo" value="<%=officer.getContactNo()%>"></div>
             <div><label>හැදුනුම්පත් අංකය*</label><input type="text" name="NIC" value="<%=officer.getNIC()%>"  required></div>
-             <div><label>ලිපිනය</label><input type="text" name="Address" value="<%=officer.getAddress()%>" ></div>
           </div>
           <div>
             <div>
@@ -208,6 +208,8 @@ session.setAttribute("OfficerEntryId",  officer.getOfficerEntryId());
              </select>
             </div>
              <div><label>උපන් දිනය</label><input type="date" name="BirthDay" value="<%=officer.getBirthDay()%>"  required></div>
+            <div><label>දුරකථන අංකය</label><input type="text" name="ContactNo" value="<%=officer.getContactNo()%>"></div>
+             <div><label>ලිපිනය</label><input type="text" name="Address" value="<%=officer.getAddress()%>" ></div>
           </div>
         </div>
       </fieldset>
@@ -297,6 +299,7 @@ session.setAttribute("OfficerEntryId",  officer.getOfficerEntryId());
                     %>
            </select>
            </div>
+           <div><label>කලාපය අනුව ගොණු අංකය</label><input type="text" name="AreaFile"  value="<%=officer.getAreaFile()%>"></div>
         </div>
       </fieldset>
       <fieldset>
@@ -415,7 +418,7 @@ session.setAttribute("OfficerEntryId",  officer.getOfficerEntryId());
             <input type="checkbox" name="checkbox" required ><span>තොරතුරු තහවුරු කරන ලදි</span>
           </div>
       </fieldset>
-      <button type="submit">තොරතුරු නැවත ඇතුලත් කිරිම</button>
+        <button type="submit" name="submit" value="update">තොරතුරු නැවත ඇතුලත් කිරිම</button>
     </form>
     </div> 
     <div>

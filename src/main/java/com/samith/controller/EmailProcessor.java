@@ -9,6 +9,7 @@ import com.samith.base.Officer;
 import com.samith.configs.MethodStorage;
 import com.samith.configs.VariableStorage;
 import com.samith.dao.OfficerDB;
+import com.samith.logging.getLogger;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -32,7 +33,7 @@ public class EmailProcessor {
     public void sendEmail(String subject,String mailBody) {
         // Get system properties
         System.setProperty("mail.mime.charset", "UTF-8");
-        System.out.println(mailBody);
+        getLogger.getLog().debug(mailBody);
         Properties properties = System.getProperties();
         // Setup mail server
         properties.put("mail.smtp.auth", "true");
@@ -63,10 +64,10 @@ public class EmailProcessor {
         
             message.setContent(multipart);
             Transport.send(message);
-            System.out.println("Email Sent message successfully....");
+            getLogger.getLog().debug("Email Sent message successfully....");
             
         } catch (MessagingException mex) {
-            mex.printStackTrace();
+            getLogger.getLog().debug(mex.toString());
         }
     }
     
@@ -80,20 +81,20 @@ public class EmailProcessor {
                         isEmailSendSuccess=true;
                 }
                 else
-                        System.out.println("No pension officers for today");
+                        getLogger.getLog().debug("No pension officers for today");
            } catch (Exception e) {
-               System.out.println("Error in getting pension officers");
+               getLogger.getLog().debug("Error in getting pension officers");
            }  
 
          try{
                 if(isEmailSendSuccess){
                         officerDB.updatePensionDetails(officers);
-                        System.out.println("Pension email entry updated in DB after send emails");
+                        getLogger.getLog().debug("Pension email entry updated in DB after send emails");
                 }
                 else
-                        System.out.println("No Pension email entry updated in DB");
+                        getLogger.getLog().debug("No Pension email entry updated in DB");
            } catch (Exception e) {
-               System.out.println("Error in pension email entry update  DB");
+               getLogger.getLog().debug("Error in pension email entry update  DB");
            }
          
          

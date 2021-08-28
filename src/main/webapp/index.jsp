@@ -4,6 +4,7 @@
     Author     : UDISSSA1
 --%>
 
+<%@page import="com.samith.logging.getLogger"%>
 <%@page import="com.samith.configs.VariableStorage"%>
 <%@page contentType="text/html;charset=UTF-8"  pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -90,7 +91,7 @@
     </form>
   </body>
 </html>
-<script src="script.js" type="text/javascript"></script>
+<script src="js/script.js" type="text/javascript"></script>
 
 
 <%
@@ -109,20 +110,20 @@
 
 
         if( username.equals(VariableStorage.getUsername())  && password.equals(VariableStorage.getPassword()) ){
-            System.out.println("Login success!!");
+            getLogger.getLog().debug("Login success!!");
 
             if (request.getParameter("submit") != null) {
                     //no secure and httponly flags
                     Cookie cookie1 = new Cookie("datar", "VFJDE3598ROPDL0900KVMKMDJSA289DNVCMX"); // create cookie object
                     cookie1.setMaxAge(60);    //set max age for cookie in seconds
-                    cookie1.setDomain("localhost"); //set domain for cookie
-                    cookie1.setPath("/OfficerDataManagement");  // set path
+                    //cookie1.setDomain("localhost"); //set domain for cookie
+                    //cookie1.setPath("/");  // set path
                     response.addCookie(cookie1);  //create cookie
                     response.sendRedirect("main.jsp");
                     }
                 }
                 else {
-                    System.out.println("failed!!");
+                    getLogger.getLog().debug("Login failed!!");
                 }
 
         }

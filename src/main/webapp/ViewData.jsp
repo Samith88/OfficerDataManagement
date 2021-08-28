@@ -4,6 +4,7 @@
     Author     : UDISSSA1
 --%>
 
+<%@page import="com.samith.logging.getLogger"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
@@ -22,7 +23,7 @@ session.setAttribute("operation",  "insert");
 
                 if (cookies == null) {
                 response.sendRedirect("index.jsp");
-                System.out.print("No Cookies!");
+                getLogger.getLog().debug("No Cookies!");
                 }
 %>
 <!DOCTYPE html>
@@ -263,6 +264,10 @@ session.setAttribute("operation",  "insert");
            <br>
           <div class="checkbox">
             <label><input type="checkbox" name="ETFAmount" value="ETFAmount"><span>පාරිතෝෂික මුදල </span></label>
+          </div>
+           <br>
+          <div class="checkbox">
+            <label><input type="checkbox" name="AreaFile" value="AreaFile"><span>කලාපය අනුව ගොණු අංකය </span></label>
           </div>
            
       </fieldset>     

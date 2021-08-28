@@ -15,7 +15,7 @@
             <cron>
                 <name>EmailSender</name>
                 <job-name>EmailSender</job-name>
-                <cron-expression>0 0/3 * 1/1 * ? *</cron-expression>
+                <cron-expression>0 0 0/6 1/1 * ? *</cron-expression>
             </cron>
         </trigger>
     </schedule>

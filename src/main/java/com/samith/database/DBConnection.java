@@ -12,6 +12,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import org.sqlite.SQLiteConfig;
 import com.samith.configs.VariableStorage;
+import com.samith.controller.FileEncryptor;
 import com.samith.logging.getLogger;
 
 /**
@@ -22,26 +23,31 @@ public class DBConnection {
     public static Connection connection;
     
     public static Connection connect() throws Exception{
-        //com.samith.controller.FileEncryptor.decryptFile();
-        
+        try{FileEncryptor.decryptFile();}
+        catch(IOException | GeneralSecurityException e)
+        {getLogger.getLog().debug(e.toString());}
         Class.forName("org.sqlite.JDBC");
-        connection = DriverManager.getConnection("jdbc:sqlite:C:\\My\\db\\Officers.db");
+        connection = DriverManager.getConnection("jdbc:sqlite:"+VariableStorage.getDbFile());
         return connection;
     }
 
     public static void disconnect() throws Exception{
         connection.close();
-        //com.samith.controller.FileEncryptor.encryptFile();
+        try{
+        FileEncryptor.encryptFile();
+        }catch(IOException | GeneralSecurityException e)
+        {getLogger.getLog().debug(e.toString());}
     }
     
     public static Connection readConnect() throws SQLException, GeneralSecurityException, IOException, ClassNotFoundException{
         SQLiteConfig config = new SQLiteConfig();
         config.setReadOnly(true);
         
-        //com.samith.controller.FileEncryptor.decryptFile();
-        
+        try{FileEncryptor.decryptFile();}
+        catch(IOException | GeneralSecurityException e)
+        {getLogger.getLog().debug(e.toString());}
         Class.forName("org.sqlite.JDBC");
-        connection = DriverManager.getConnection("jdbc:sqlite:C:\\My\\db\\Officers.db",config.toProperties());
+        connection = DriverManager.getConnection("jdbc:sqlite:"+VariableStorage.getDbFile(),config.toProperties());
         return connection;
     }    
 }

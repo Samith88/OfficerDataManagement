@@ -252,6 +252,14 @@ public class Officer {
         this.ETFAmount = ETFAmount;
     }
     
+    public String getAreaFile() {
+        return AreaFile;
+    }
+
+    public void setAreaFile(String AreaFile) {
+        this.AreaFile = AreaFile;
+    }
+    
  private String  OfficerEntryId;
  private String  IndexNumber;
  private String  EmpName;
@@ -282,5 +290,7 @@ public class Officer {
  private String VoteChangedAppointmentRecived;
  private String ETFRecivedDate;
  private String ETFAmount;
+ 
+ private String AreaFile;
   
 }

@@ -5,6 +5,8 @@
  */
 package com.samith.controller;
 
+import com.samith.configs.VariableStorage;
+import com.samith.logging.getLogger;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.annotation.WebListener;
@@ -31,11 +33,12 @@ public class QuartzListener extends QuartzInitializerListener {
             Scheduler scheduler = factory.getScheduler();
             JobDetail jobDetail = JobBuilder.newJob(EmailSender.class).build();
             Trigger trigger = TriggerBuilder.newTrigger().withIdentity("simple").withSchedule(
-                    CronScheduleBuilder.cronSchedule("0 0/3 * 1/1 * ? *")).startNow().build();
+                    CronScheduleBuilder.cronSchedule(VariableStorage.getEmailCron())).startNow().build();
             scheduler.scheduleJob(jobDetail, trigger);
             scheduler.start();
         } catch (SchedulerException e) {
-            ctx.log("There was an error scheduling the job.", e);
+            //ctx.log("There was an error scheduling the job.", e);
+             getLogger.getLog().debug("There was an error scheduling the job."+e.toString());
         }
     }
 

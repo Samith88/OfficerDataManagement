@@ -10,8 +10,7 @@ package com.samith.controller;
  *
  * @author UDISSSA1
  */
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import com.samith.logging.getLogger;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -25,7 +24,8 @@ public class EmailSender implements Job {
         try {
             emailProcessor.sendPensionOfficerEmails();
         } catch (Exception ex) {
-            Logger.getLogger(EmailSender.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(EmailSender.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger.getLog().debug(ex.toString());
         }
 
     }
