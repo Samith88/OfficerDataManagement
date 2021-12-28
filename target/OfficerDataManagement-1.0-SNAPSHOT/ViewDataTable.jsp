@@ -49,84 +49,78 @@ Map<String, String> wantedValues = new LinkedHashMap<String, String>();
 
 try{
     if(!request.getParameter("IndexNumber").equals(null))
-        wantedValues.put("IndexNumber","IndexNumber");
+        wantedValues.put("IndexNumber","අනු අංකය");
 } catch (Exception e) {
             wantedValues.put("IndexNumber","");
             e.toString();
 }
 try{
     if(!request.getParameter("EmpName").equals(null))
-        wantedValues.put("EmpName","EmpName");
+        wantedValues.put("EmpName","මුලකුරු සමග නම");
 } catch (Exception e) {
         wantedValues.put("EmpName","");
         e.toString();
 }
 try{
     if(!request.getParameter("FullName").equals(null))
-        wantedValues.put("FullName","FullName");
+        wantedValues.put("FullName","සම්පුර්න නම");
 } catch (Exception e) {
         wantedValues.put("FullName",""); 
         e.toString();
 }
 try{    
     if(!request.getParameter("ContactNo").equals(null))
-        wantedValues.put("ContactNo","ContactNo");
+        wantedValues.put("ContactNo","දුරකථන අංකය");
 } catch (Exception e) {
        wantedValues.put("ContactNo","");
         e.toString();
 }
 try{        
     if(!request.getParameter("BirthDay").equals(null))
-        wantedValues.put("BirthDay","BirthDay");
+        wantedValues.put("BirthDay","උපන් දිනය ");
 } catch (Exception e) {
        wantedValues.put("BirthDay","");
         e.toString();
 }
 try{
     if(!request.getParameter("NIC").equals(null))
-        wantedValues.put("NIC","NIC");
+        wantedValues.put("NIC","හැදුනුම්පත් අංකය");
 } catch (Exception e) {
         wantedValues.put("NIC","");
         e.toString();
 }
 try{       
     if(!request.getParameter("Gender").equals(null))
-        wantedValues.put("Gender","Gender");
+        wantedValues.put("Gender","ස්ත්‍රි පුරුෂ භාවය");
 } catch (Exception e) {
         wantedValues.put("Gender","");
         e.toString();
 }
-try{  
-    if(!request.getParameter("Gender").equals(null))
-        wantedValues.put("Gender","Gender");
-} catch (Exception e) {
-       wantedValues.put("Gender","");
-        e.toString();
-}
+
 try{ 
     if(!request.getParameter("Address").equals(null))
-        wantedValues.put("Address","Address");
+        wantedValues.put("Address","ලිපිනය");
 } catch (Exception e) {
       wantedValues.put("Address","");
         e.toString();
 }
 try{  
     if(!request.getParameter("OfficeType").equals(null))
-        wantedValues.put("OfficeType","OfficeType");
+        wantedValues.put("OfficeType","නිලධාරි වර්ගය");
 } catch (Exception e) {
       wantedValues.put("OfficeType",""); 
         e.toString();
 }
 try{ 
     if(!request.getParameter("Designation").equals(null))
-        wantedValues.put("Designation","Designation");
+        wantedValues.put("Designation","තනතුර");
 } catch (Exception e) {
       wantedValues.put("Designation","");
         e.toString();
 }
 try{      
     if(!request.getParameter("Grade").equals(null))
-        wantedValues.put("Grade","Grade");
+        wantedValues.put("Grade","ශ්‍රේණිය");
 } catch (Exception e) {
         e.printStackTrace();
        wantedValues.put("Grade","");
@@ -134,91 +128,91 @@ try{
 }
 try{   
     if(!request.getParameter("OfficeLocation").equals(null))
-        wantedValues.put("OfficeLocation","OfficeLocation");
+        wantedValues.put("OfficeLocation","සේවා ස්තානය");
 } catch (Exception e) {
        wantedValues.put("OfficeLocation","");
         e.toString();
 }
 try{     
     if(!request.getParameter("OfficeLocationJoinDate").equals(null))
-        wantedValues.put("OfficeLocationJoinDate","OfficeLocationJoinDate");
+        wantedValues.put("OfficeLocationJoinDate","සේවා ස්තානයට පත්වුනු දවස");
 } catch (Exception e) {
        wantedValues.put("OfficeLocationJoinDate","");
         e.toString();
 }
 try{  
     if(!request.getParameter("AreaFileNo").equals(null))
-        wantedValues.put("AreaFileNo","AreaFileNo");
+        wantedValues.put("AreaFileNo","කාලාපයට අයත් ග්‍රාම නිලධාරි වසම");
 } catch (Exception e) {
         wantedValues.put("AreaFileNo","");
         e.toString();
 }
 try{
     if(!request.getParameter("ServiceArea").equals(null))
-        wantedValues.put("ServiceArea","ServiceArea");
+        wantedValues.put("ServiceArea","කලාපය / සේවා ස්ථානය");
 } catch (Exception e) {
          wantedValues.put("ServiceArea","");
         e.toString();
 }
 try{
     if(!request.getParameter("FirstAppointmentDate").equals(null))
-        wantedValues.put("FirstAppointmentDate","FirstAppointmentDate");
+        wantedValues.put("FirstAppointmentDate","මුල් පත්වීම් දිනය");
 } catch (Exception e) {
          wantedValues.put("FirstAppointmentDate","");
         e.toString();
 }
 try{
     if(!request.getParameter("SecondAppointmentDate").equals(null))
-        wantedValues.put("SecondAppointmentDate","SecondAppointmentDate");
+        wantedValues.put("SecondAppointmentDate","නියාමක පත්වීම");
 } catch (Exception e) {
         wantedValues.put("SecondAppointmentDate","");
         e.toString();
 }
 try{  
     if(!request.getParameter("SamurdhiAuthAppointmentDate").equals(null))
-        wantedValues.put("SamurdhiAuthAppointmentDate","SamurdhiAuthAppointmentDate");
+        wantedValues.put("SamurdhiAuthAppointmentDate","සමෘද්ධි සංවර්ධන නිලධාරි (සමෘ.අධිකාරි) පත්වීම් දිනය");
 } catch (Exception e) {
         wantedValues.put("SamurdhiAuthAppointmentDate","");
         e.toString();
 }
 try{ 	
     if(!request.getParameter("SalaryNo").equals(null))
-        wantedValues.put("SalaryNo","SalaryNo");
+        wantedValues.put("SalaryNo","වැටුප් අංකය");
 } catch (Exception e) {
         wantedValues.put("SalaryNo","");
         e.toString();
 }
 try{ 	
     if(!request.getParameter("SalaryIncreamentDate").equals(null))
-        wantedValues.put("SalaryIncreamentDate","SalaryIncreamentDate");
+        wantedValues.put("SalaryIncreamentDate","වැටුප් වර්ධක දිනය");
 } catch (Exception e) {
         wantedValues.put("SalaryIncreamentDate","");
         e.toString();
 }
 try{ 	
     if(!request.getParameter("ServiceType").equals(null))
-        wantedValues.put("ServiceType","ServiceType");
+        wantedValues.put("ServiceType","මුල් සේවා/ නව සේවා");
 } catch (Exception e) {
         wantedValues.put("ServiceType","");
         e.toString();
 }
 try{ 	
     if(!request.getParameter("ETF").equals(null))
-        wantedValues.put("ETF","ETF");
+        wantedValues.put("ETF","පාරිතෝෂික ලබා ඇත/නැත");
 } catch (Exception e) {
         wantedValues.put("ETF","");
         e.toString();
 }
 try{ 	
     if(!request.getParameter("PensionAge").equals(null))
-        wantedValues.put("PensionAge","PensionAge");
+        wantedValues.put("PensionAge","විශ්‍රාම ලබන වයස");
 } catch (Exception e) {
         wantedValues.put("PensionAge","");
         e.toString();
 }
 try{	
     if(!request.getParameter("PensionDate").equals(null))
-        wantedValues.put("PensionDate","PensionDate");
+        wantedValues.put("PensionDate","විශ්‍රාම ලබන වයස දිනය");
 } catch (Exception e) {
          wantedValues.put("PensionDate","");
         e.toString();
@@ -226,28 +220,28 @@ try{
 //added 11/07
 try{	
     if(!request.getParameter("AppointmentLetterRecived").equals(null))
-        wantedValues.put("AppointmentLetterRecived","AppointmentLetterRecived");
+        wantedValues.put("AppointmentLetterRecived","අන්තර්ග්‍රහණ පත්වීම් ලිපිය ලැබීම");
 } catch (Exception e) {
          wantedValues.put("AppointmentLetterRecived","");
         e.toString();
 }
 try{	
     if(!request.getParameter("FirstVoteChanged").equals(null))
-        wantedValues.put("FirstVoteChanged","FirstVoteChanged");
+        wantedValues.put("FirstVoteChanged","පලමුව මනාපය පලකීරීමෙන් පසු නැවත මනාපය වෙනස් කිරීම");
 } catch (Exception e) {
          wantedValues.put("FirstVoteChanged","");
         e.toString();
 }
 try{	
     if(!request.getParameter("VoteChangedAppointmentRecived").equals(null))
-        wantedValues.put("VoteChangedAppointmentRecived","VoteChangedAppointmentRecived");
+        wantedValues.put("VoteChangedAppointmentRecived","නැවත මනාපය වෙනස් කල පසු නව පත්වීම් ලිපිය ලැබීම");
 } catch (Exception e) {
          wantedValues.put("VoteChangedAppointmentRecived","");
         e.toString();
 }
 try{	
     if(!request.getParameter("ETFRecivedDate").equals(null))
-        wantedValues.put("ETFRecivedDate","ETFRecivedDate");
+        wantedValues.put("ETFRecivedDate","පාරිතෝෂික මුදල ලබාගෙන ඇත්නම් දිනය");
 } catch (Exception e) {
          wantedValues.put("ETFRecivedDate","");
         e.toString();
@@ -255,7 +249,7 @@ try{
 
 try{	
     if(!request.getParameter("ETFAmount").equals(null))
-        wantedValues.put("ETFAmount","ETFAmount");
+        wantedValues.put("ETFAmount","පාරිතෝෂික මුදල");
 } catch (Exception e) {
          wantedValues.put("ETFAmount","");
         e.toString();
@@ -263,7 +257,7 @@ try{
 
 try{	
     if(!request.getParameter("AreaFile").equals(null))
-        wantedValues.put("AreaFile","AreaFile");
+        wantedValues.put("AreaFile","කලාපය අනුව ගොණු අංකය");
 } catch (Exception e) {
          wantedValues.put("AreaFile","");
         e.toString();
@@ -271,7 +265,7 @@ try{
 
 try{	
     if(!request.getParameter("Email").equals(null))
-        wantedValues.put("Email","Email");
+        wantedValues.put("Email","විද්යුත් ලිපිනය");
 } catch (Exception e) {
          wantedValues.put("Email","");
         e.toString();
@@ -303,7 +297,7 @@ try{
          for (Map.Entry<String, String> entry : wantedValues.entrySet()) {
                  if(!entry.getValue().toString().equals("")){
          %>
-            <td><b><%=entry.getKey() %></b></td>
+            <td><b><%=entry.getValue() %></b></td>
          <% 
                 }
             }

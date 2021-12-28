@@ -192,7 +192,7 @@ List<String> EmailSendYN = com.samith.configs.VariableStorage.getEmailSendYN();
             <div><label>නිලධාරි අංකය(වෙනස් නොකරන්න)</label><input type="text" name="OfficerEntryId" value="<%=officer.getOfficerEntryId()%>" ></div>
             <div><label>අනු අංකය*</label><input type="text" name="IndexNumber" value="<%=officer.getIndexNumber()%>"  required></div>
             <div><label>මුලකුරු සමග නම*</label><input type="text" name="EmpName" value="<%=officer.getEmpName()%>"  required></div>
-            <div><label>සම්පුර්න නම*</label><input type="text" name="FullName" value="<%=officer.getFullName()%>"></div>
+            <div><label>සම්පුර්න නම</label><input type="text" name="FullName" value="<%=officer.getFullName()%>"></div>
             <div><label>හැදුනුම්පත් අංකය*</label><input type="text" name="NIC" value="<%=officer.getNIC()%>"  required></div>
           </div>
           <div>
