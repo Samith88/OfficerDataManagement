@@ -167,7 +167,7 @@ public class OfficerDB {
            Officer officer = new Officer();
            
            try{
-               ResultSet rs  = retrieveClass.getResultsFormDB("select *  from Officer  where IndexNumber='"+IndexNumber+"' and  IsActive='1';");
+               ResultSet rs  = retrieveClass.getResultsFormDB("select *  from Officer  where IndexNumber='"+IndexNumber+"';");
                while (rs.next()) {
                    officer.setOfficerEntryId(rs.getString("OfficerEntryId"));
                    officer.setIndexNumber(rs.getString("IndexNumber"));
@@ -203,6 +203,7 @@ public class OfficerDB {
                    officer.setETFAmount(rs.getString("ETFAmount"));
                    
                    officer.setAreaFile(rs.getString("AreaFile"));
+                   officer.setIsActive(rs.getString("IsActive"));
                    officer.setEmail(rs.getString("Email"));
                    officer.setPensionEmailSend(rs.getString("PensionEmailSend"));
                    officer.setSalaryIncreamentEmailSendYear(rs.getString("SalaryIncreamentEmailSendYear"));

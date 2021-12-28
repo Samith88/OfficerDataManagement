@@ -227,7 +227,7 @@ try{
     <body>
         <h1>නිලධාරි තොරතුරු කලමණාකරනය</h1>
         <%=dbOpsOut%><br> <br>
-        <a href="EnterOfficerData.jsp">නැවත නිලධාරි තොරතුරු ඇතුලත් කිරිම</a> <br>
+        <a href="EnterOfficerData.jsp">නිලධාරි තොරතුරු ඇතුලත් කිරිම</a> <br>
         <a href="main.jsp">මුල් පිටුවට</a> <br>
     </body>
 </html>

@@ -335,7 +335,7 @@ public class Officer {
  //added 12/27
  private String Email;
  private String IsActive;
-
+ //added 12/28
  private String PensionEmailSend;
  private String SalaryIncreamentEmailSendYear;
  private String SalaryIncreamentEmailSendYearAll;

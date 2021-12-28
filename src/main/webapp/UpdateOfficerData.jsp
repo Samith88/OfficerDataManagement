@@ -182,7 +182,7 @@ List<String> EmailSendYN = com.samith.configs.VariableStorage.getEmailSendYN();
   <body>
     <div class="main-block">
     <form method="post" action="GetOfficerData.jsp" accept-charset="UTF-8">
-      <h1>නිලධාරි තොරතුරු ඇතුලත් කිරිම</h1>
+      <h1>නිලධාරි තොරතුරු නැවත සැකසිම</h1>
       <fieldset>
         <legend>
           <h3>පුද්ගලික තොරතුරු</h3>
@@ -432,7 +432,7 @@ List<String> EmailSendYN = com.samith.configs.VariableStorage.getEmailSendYN();
         </legend>
         <div  class="account-details">
            <div>
-              <label>සේවා</label>
+              <label>විශ්‍රාම විද්යුත් ලිපිය යවන ලදි</label>
                 <select name="PensionEmailSend">
                     <%
                         for (int i = 0; i < EmailSendYN.size(); i++) {
