@@ -7,6 +7,7 @@ com\samith\controller\QuartzListener.class
 com\samith\dao\OfficerDB.class
 com\samith\database\RetrieveData.class
 com\samith\configs\MethodStorage.class
+com\samith\controller\EmailProcessor$2.class
 com\samith\base\Officer.class
 com\samith\controller\FileEncryptor.class
 com\samith\controller\EmailProcessor$1.class

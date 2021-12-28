@@ -7,6 +7,7 @@ package com.samith.configs;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 /**
  *
@@ -28,5 +29,37 @@ public class MethodStorage {
         dateTime = dateTime.plusMonths(VariableStorage.getPlusMonthsPentionDate());
         return dateTime.format(formatter);
     }
+    
+    public static  String getSalaryIncreamentDate(){
+        DateTimeFormatter formatter  = DateTimeFormatter.ofPattern("MM-dd");
+      
+        LocalDate dateTime  = LocalDate.now();
+        dateTime = dateTime.plusDays(Integer.parseInt("7"));
+
+        return "-"+dateTime.format(formatter);
+    }
+    
+    public static  String getSalaryIncreamentDateString(){
+        DateTimeFormatter formatter  = DateTimeFormatter.ofPattern("MM-dd");
+      
+        LocalDate dateTime  = LocalDate.now();
+        dateTime = dateTime.plusDays(Integer.parseInt("7"));
+
+        return dateTime.format(formatter);
+    }
+    
+    public static  String getSalaryIncreamentMonth(){
+        DateTimeFormatter formatter  = DateTimeFormatter.ofPattern("MM");
+        LocalDate dateTime  = LocalDate.now();
+        dateTime = dateTime.plusDays(Integer.parseInt("7"));
+
+        return "-"+dateTime.format(formatter)+"-";
+    }
+    
+   public static String getCurrentYear()
+   {
+        Date date=new Date();  
+        return String.valueOf(date.getYear()+1900);
+   }
     
 }

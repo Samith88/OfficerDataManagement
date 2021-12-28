@@ -259,7 +259,47 @@ public class Officer {
     public void setAreaFile(String AreaFile) {
         this.AreaFile = AreaFile;
     }
-    
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String Email) {
+        this.Email = Email;
+    }
+
+    public String getIsActive() {
+        return IsActive;
+    }
+
+    public void setIsActive(String IsActive) {
+        this.IsActive = IsActive;
+    }
+    public String getPensionEmailSend() {
+        return PensionEmailSend;
+    }
+
+    public void setPensionEmailSend(String PensionEmailSend) {
+        this.PensionEmailSend = PensionEmailSend;
+    }
+
+    public String getSalaryIncreamentEmailSendYear() {
+        return SalaryIncreamentEmailSendYear;
+    }
+
+    public void setSalaryIncreamentEmailSendYear(String SalaryIncreamentEmailSendYear) {
+        this.SalaryIncreamentEmailSendYear = SalaryIncreamentEmailSendYear;
+    }
+
+    public String getSalaryIncreamentEmailSendYearAll() {
+        return SalaryIncreamentEmailSendYearAll;
+    }
+
+    //added 12/28
+    public void setSalaryIncreamentEmailSendYearAll(String SalaryIncreamentEmailSendYearAll) {
+        this.SalaryIncreamentEmailSendYearAll = SalaryIncreamentEmailSendYearAll;
+    }
+
  private String  OfficerEntryId;
  private String  IndexNumber;
  private String  EmpName;
@@ -292,5 +332,12 @@ public class Officer {
  private String ETFAmount;
  
  private String AreaFile;
-  
+ //added 12/27
+ private String Email;
+ private String IsActive;
+
+ private String PensionEmailSend;
+ private String SalaryIncreamentEmailSendYear;
+ private String SalaryIncreamentEmailSendYearAll;
+
 }

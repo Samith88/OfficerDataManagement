@@ -268,6 +268,14 @@ try{
          wantedValues.put("AreaFile","");
         e.toString();
 }
+
+try{	
+    if(!request.getParameter("Email").equals(null))
+        wantedValues.put("Email","Email");
+} catch (Exception e) {
+         wantedValues.put("Email","");
+        e.toString();
+}
 %>
 <!DOCTYPE html>
 <html>
@@ -375,6 +383,8 @@ try{
             <td><b><%=officer.getETFAmount()%></b></td>  
         <% }  if(!wantedValues.get("AreaFile").equals("")){ %>
             <td><b><%=officer.getAreaFile()%></b></td> 
+        <% }  if(!wantedValues.get("Email").equals("")){ %>
+            <td><b><%=officer.getEmail()%></b></td>
        <%  }  %>
        </tr>
        

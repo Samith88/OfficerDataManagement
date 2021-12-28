@@ -269,6 +269,9 @@ session.setAttribute("operation",  "insert");
           <div class="checkbox">
             <label><input type="checkbox" name="AreaFile" value="AreaFile"><span>කලාපය අනුව ගොණු අංකය </span></label>
           </div>
+          <div class="checkbox">
+            <label><input type="checkbox" name="Email" value="Email"><span>විද්යුත් ලිපිනය </span></label>
+          </div>
            
       </fieldset>     
 

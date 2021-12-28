@@ -27,7 +27,16 @@ public class EmailSender implements Job {
             //Logger.getLogger(EmailSender.class.getName()).log(Level.SEVERE, null, ex);
             getLogger.getLog().debug(ex.toString());
         }
-
+        try {
+            emailProcessor.sendSalaryIncreamentEmails();
+        } catch (Exception ex) {
+            getLogger.getLog().debug(ex.toString());
+        }
+        try {
+            emailProcessor.sendSalaryIncreamentEmailsAll();
+        } catch (Exception ex) {
+            getLogger.getLog().debug(ex.toString());
+        }
     }
 
 }

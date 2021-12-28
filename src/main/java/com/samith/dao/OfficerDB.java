@@ -6,6 +6,7 @@
 package com.samith.dao;
 
 import com.samith.base.Officer;
+import static com.samith.configs.MethodStorage.getCurrentYear;
 import com.samith.database.DBConnection;
 import com.samith.database.InsertUpdateDeleteClass;
 import com.samith.database.RetrieveData;
@@ -28,7 +29,7 @@ public class OfficerDB {
         
         return insertUpdateDeleteClass.insertUpdateDeleteDB("insert into Officer(IndexNumber,EmpName,FullName,ContactNo,BirthDay,NIC,Gender,Address,OfficeType,Designation,Grade,OfficeLocation,OfficeLocationJoinDate,"
                 + "AreaFileNo,ServiceArea,FirstAppointmentDate,SecondAppointmentDate,SamurdhiAuthAppointmentDate,SalaryNo,SalaryIncreamentDate,ServiceType,ETF,PensionAge,PensionDate,"
-                + "AppointmentLetterRecived,FirstVoteChanged,VoteChangedAppointmentRecived,ETFRecivedDate,ETFAmount,AreaFile) "
+                + "AppointmentLetterRecived,FirstVoteChanged,VoteChangedAppointmentRecived,ETFRecivedDate,ETFAmount,AreaFile,Email) "
                 + "values ("
                + " '"+officer.getIndexNumber()+"',"
                + " '"+officer.getEmpName()+"' ,"
@@ -59,7 +60,8 @@ public class OfficerDB {
                + " '"+officer.getVoteChangedAppointmentRecived()+"',"
                + " '"+officer.getETFRecivedDate()+"',"
                + " '"+officer.getETFAmount()+"',"
-               + " '"+officer.getAreaFile()+"'"
+               + " '"+officer.getAreaFile()+"',"
+               + " '"+officer.getEmail()+"'"
                + ")");
           }
         
@@ -98,7 +100,12 @@ public class OfficerDB {
                + "VoteChangedAppointmentRecived='"+officer.getVoteChangedAppointmentRecived()+"', "
                + "ETFRecivedDate='"+officer.getETFRecivedDate()+"', "
                + "ETFAmount='"+officer.getETFAmount()+"',"
-               + "AreaFile='"+officer.getAreaFile()+"'"
+               + "AreaFile='"+officer.getAreaFile()+"',"
+               + "Email='"+officer.getEmail()+"',"
+               + "PensionEmailSend='"+officer.getPensionEmailSend()+"',"
+               + "IsActive='"+officer.getIsActive()+"',"
+               + "SalaryIncreamentEmailSendYear='"+officer.getSalaryIncreamentEmailSendYear()+"',"
+               + "SalaryIncreamentEmailSendYearAll='"+officer.getSalaryIncreamentEmailSendYearAll()+"'"
                + " where OfficerEntryId='"+officer.getOfficerEntryId()+"';");
           }
         
@@ -111,6 +118,28 @@ public class OfficerDB {
                     + "PensionEmailSend= 'Y'"
                     + " where OfficerEntryId='"+officers.get(i).getOfficerEntryId()+"';");
             }
+        }
+        
+
+        
+        public void updateCurrentSalaryIncreamentYear(Officer officer){
+    
+             InsertUpdateDeleteClass insertUpdateDeleteClass  =new InsertUpdateDeleteClass(); 
+              insertUpdateDeleteClass.insertUpdateDeleteDB("update Officer set  "
+                    + "SalaryIncreamentEmailSendYear= '"+getCurrentYear()+"'"
+                    + " where OfficerEntryId='"+officer.getOfficerEntryId()+"';");
+        }
+        
+        public void updateCurrentSalaryIncreamentYearAll(List<Officer> officers){
+    
+             InsertUpdateDeleteClass insertUpdateDeleteClass  =new InsertUpdateDeleteClass();
+              for (Officer  officer: officers) {
+              insertUpdateDeleteClass.insertUpdateDeleteDB("update Officer set  "
+                    + "SalaryIncreamentEmailSendYearAll= '"+getCurrentYear()+"'"
+                    + " where OfficerEntryId='"+officer.getOfficerEntryId()+"';");
+              }
+             
+            
         }
         
        public Officer getOfficerByIndexNumber(String IndexNumber) throws Exception{
@@ -138,7 +167,7 @@ public class OfficerDB {
            Officer officer = new Officer();
            
            try{
-               ResultSet rs  = retrieveClass.getResultsFormDB("select *  from Officer  where IndexNumber='"+IndexNumber+"'");
+               ResultSet rs  = retrieveClass.getResultsFormDB("select *  from Officer  where IndexNumber='"+IndexNumber+"' and  IsActive='1';");
                while (rs.next()) {
                    officer.setOfficerEntryId(rs.getString("OfficerEntryId"));
                    officer.setIndexNumber(rs.getString("IndexNumber"));
@@ -174,6 +203,10 @@ public class OfficerDB {
                    officer.setETFAmount(rs.getString("ETFAmount"));
                    
                    officer.setAreaFile(rs.getString("AreaFile"));
+                   officer.setEmail(rs.getString("Email"));
+                   officer.setPensionEmailSend(rs.getString("PensionEmailSend"));
+                   officer.setSalaryIncreamentEmailSendYear(rs.getString("SalaryIncreamentEmailSendYear"));
+                   officer.setSalaryIncreamentEmailSendYearAll(rs.getString("SalaryIncreamentEmailSendYearAll"));
                }
                DBConnection.disconnect();
            } catch (SQLException e) {
@@ -190,7 +223,7 @@ public class OfficerDB {
            Officer officer = null;
            
            try{
-               ResultSet rs  = retrieveClass.getResultsFormDB("select *  from Officer  where PensionDate='"+MonthsToAddPentionDate+"' and PensionEmailSend='N';");
+               ResultSet rs  = retrieveClass.getResultsFormDB("select *  from Officer  where PensionDate='"+MonthsToAddPentionDate+"' and PensionEmailSend='N'  and  IsActive='1'; ");
                //ResultSet rs  = retrieveClass.getResultsFormDB("select *  from Officer ;");
                while (rs.next()) {
                    officer = new Officer();
@@ -227,6 +260,10 @@ public class OfficerDB {
                    officer.setETFRecivedDate(rs.getString("ETFRecivedDate"));
                    officer.setETFAmount(rs.getString("ETFAmount"));
                    officer.setAreaFile(rs.getString("AreaFile"));
+                   officer.setEmail(rs.getString("Email"));
+                   officer.setPensionEmailSend(rs.getString("PensionEmailSend"));
+                   officer.setSalaryIncreamentEmailSendYear(rs.getString("SalaryIncreamentEmailSendYear"));
+                   officer.setSalaryIncreamentEmailSendYearAll(rs.getString("SalaryIncreamentEmailSendYearAll"));
 
                    officers.add(officer);
                }
@@ -238,14 +275,14 @@ public class OfficerDB {
            return officers;
        } 
        
-    
-       public  List<Officer>  getOfficerAllByIndexNumberWildCard(String whereString) throws Exception{
+       public  List<Officer>  getOfficerAllBySalaryIncreamentDate(String SalaryIncreamentDate) throws Exception{
            
            RetrieveData retrieveClass =new RetrieveData();
-           Officer officer = null;
            List<Officer> officers = new ArrayList<>();
+           Officer officer = null;
+           
            try{
-               ResultSet rs  = retrieveClass.getResultsFormDB("select *  from Officer "+whereString+";");
+               ResultSet rs  = retrieveClass.getResultsFormDB("select *  from Officer  where SalaryIncreamentDate like '%"+SalaryIncreamentDate+"%'   and  IsActive='1' and (SalaryIncreamentEmailSendYear <> '"+getCurrentYear()+"' or  SalaryIncreamentEmailSendYear is null) ; ");
                while (rs.next()) {
                    officer = new Officer();
                    officer.setOfficerEntryId(rs.getString("OfficerEntryId"));
@@ -281,6 +318,130 @@ public class OfficerDB {
                    officer.setETFRecivedDate(rs.getString("ETFRecivedDate"));
                    officer.setETFAmount(rs.getString("ETFAmount"));
                    officer.setAreaFile(rs.getString("AreaFile"));
+                   officer.setEmail(rs.getString("Email"));
+                   officer.setPensionEmailSend(rs.getString("PensionEmailSend"));
+                   officer.setSalaryIncreamentEmailSendYear(rs.getString("SalaryIncreamentEmailSendYear"));
+                   officer.setSalaryIncreamentEmailSendYearAll(rs.getString("SalaryIncreamentEmailSendYearAll"));
+
+                   officers.add(officer);
+               }
+               DBConnection.disconnect();
+           } catch (SQLException e) {
+               getLogger.getLog().debug(e.toString());
+                try{DBConnection.disconnect();}catch (SQLException ex) {}
+           }     
+           return officers;
+       } 
+    
+       
+       public  List<Officer>  getMonthOfficersForSalaryIncreament(String SalaryIncreamentMonth) throws Exception{
+           
+           RetrieveData retrieveClass =new RetrieveData();
+           List<Officer> officers = new ArrayList<>();
+           Officer officer = null;
+           
+           try{
+               ResultSet rs  = retrieveClass.getResultsFormDB("select *  from Officer  where SalaryIncreamentDate like '%"+SalaryIncreamentMonth+"%'   and  IsActive='1' and (SalaryIncreamentEmailSendYearAll <> '"+getCurrentYear()+"' or  SalaryIncreamentEmailSendYearAll is null) ; ");
+               while (rs.next()) {
+                   officer = new Officer();
+                   officer.setOfficerEntryId(rs.getString("OfficerEntryId"));
+                   officer.setIndexNumber(rs.getString("IndexNumber"));
+                   officer.setEmpName(rs.getString("EmpName"));
+                   officer.setFullName(rs.getString("FullName"));
+                   officer.setContactNo(rs.getString("ContactNo"));
+                   officer.setBirthDay(rs.getString("BirthDay"));
+                   officer.setNIC(rs.getString("NIC"));
+                   officer.setGender(rs.getString("Gender"));
+                   officer.setAddress(rs.getString("Address"));
+                   officer.setOfficeType(rs.getString("OfficeType"));
+                   officer.setDesignation(rs.getString("Designation"));
+                   officer.setGrade(rs.getString("Grade"));
+                   officer.setOfficeLocation(rs.getString("OfficeLocation"));
+                   officer.setOfficeLocationJoinDate(rs.getString("OfficeLocationJoinDate"));
+                   officer.setAreaFileNo(rs.getString("AreaFileNo"));
+                   officer.setServiceArea(rs.getString("ServiceArea"));
+                   officer.setFirstAppointmentDate(rs.getString("FirstAppointmentDate"));
+                   officer.setSecondAppointmentDate(rs.getString("SecondAppointmentDate"));
+                   officer.setSamurdhiAuthAppointmentDate(rs.getString("SamurdhiAuthAppointmentDate"));
+                   officer.setSalaryNo(rs.getString("SalaryNo"));
+                   officer.setSalaryIncreamentDate(rs.getString("SalaryIncreamentDate"));
+                   officer.setServiceType(rs.getString("ServiceType"));
+                   officer.setETF(rs.getString("ETF"));
+                   officer.setPensionAge(rs.getString("PensionAge"));
+                   officer.setPensionDate(rs.getString("PensionDate"));
+                   officer.setOfficeLocation(rs.getString("OfficeLocation"));
+                   
+                   officer.setAppointmentLetterRecived(rs.getString("AppointmentLetterRecived"));
+                   officer.setFirstVoteChanged(rs.getString("FirstVoteChanged"));
+                   officer.setVoteChangedAppointmentRecived(rs.getString("VoteChangedAppointmentRecived"));
+                   officer.setETFRecivedDate(rs.getString("ETFRecivedDate"));
+                   officer.setETFAmount(rs.getString("ETFAmount"));
+                   officer.setAreaFile(rs.getString("AreaFile"));
+                   officer.setEmail(rs.getString("Email"));
+                   officer.setPensionEmailSend(rs.getString("PensionEmailSend"));
+                   officer.setSalaryIncreamentEmailSendYear(rs.getString("SalaryIncreamentEmailSendYear"));
+                   officer.setSalaryIncreamentEmailSendYearAll(rs.getString("SalaryIncreamentEmailSendYearAll"));
+
+                   officers.add(officer);
+               }
+               DBConnection.disconnect();
+           } catch (SQLException e) {
+               getLogger.getLog().debug(e.toString());
+                try{DBConnection.disconnect();}catch (SQLException ex) {}
+           }     
+           return officers;
+       }        
+       
+       public  List<Officer>  getOfficerAllByIndexNumberWildCard(String whereString) throws Exception{
+           
+           RetrieveData retrieveClass =new RetrieveData();
+           Officer officer = null;
+           List<Officer> officers = new ArrayList<>();
+           try{
+                ResultSet rs  =null;
+               if (whereString.equals(""))
+                    rs  = retrieveClass.getResultsFormDB("select *  from Officer where  IsActive='1'; ");
+               else
+                    rs  = retrieveClass.getResultsFormDB("select *  from Officer "+whereString+" and  IsActive='1'; ");
+               while (rs.next()) {
+                   officer = new Officer();
+                   officer.setOfficerEntryId(rs.getString("OfficerEntryId"));
+                   officer.setIndexNumber(rs.getString("IndexNumber"));
+                   officer.setEmpName(rs.getString("EmpName"));
+                   officer.setFullName(rs.getString("FullName"));
+                   officer.setContactNo(rs.getString("ContactNo"));
+                   officer.setBirthDay(rs.getString("BirthDay"));
+                   officer.setNIC(rs.getString("NIC"));
+                   officer.setGender(rs.getString("Gender"));
+                   officer.setAddress(rs.getString("Address"));
+                   officer.setOfficeType(rs.getString("OfficeType"));
+                   officer.setDesignation(rs.getString("Designation"));
+                   officer.setGrade(rs.getString("Grade"));
+                   officer.setOfficeLocation(rs.getString("OfficeLocation"));
+                   officer.setOfficeLocationJoinDate(rs.getString("OfficeLocationJoinDate"));
+                   officer.setAreaFileNo(rs.getString("AreaFileNo"));
+                   officer.setServiceArea(rs.getString("ServiceArea"));
+                   officer.setFirstAppointmentDate(rs.getString("FirstAppointmentDate"));
+                   officer.setSecondAppointmentDate(rs.getString("SecondAppointmentDate"));
+                   officer.setSamurdhiAuthAppointmentDate(rs.getString("SamurdhiAuthAppointmentDate"));
+                   officer.setSalaryNo(rs.getString("SalaryNo"));
+                   officer.setSalaryIncreamentDate(rs.getString("SalaryIncreamentDate"));
+                   officer.setServiceType(rs.getString("ServiceType"));
+                   officer.setETF(rs.getString("ETF"));
+                   officer.setPensionAge(rs.getString("PensionAge"));
+                   officer.setPensionDate(rs.getString("PensionDate"));
+                   officer.setOfficeLocation(rs.getString("OfficeLocation"));
+                   
+                   officer.setAppointmentLetterRecived(rs.getString("AppointmentLetterRecived"));
+                   officer.setFirstVoteChanged(rs.getString("FirstVoteChanged"));
+                   officer.setVoteChangedAppointmentRecived(rs.getString("VoteChangedAppointmentRecived"));
+                   officer.setETFRecivedDate(rs.getString("ETFRecivedDate"));
+                   officer.setETFAmount(rs.getString("ETFAmount"));
+                   officer.setAreaFile(rs.getString("AreaFile"));
+                   officer.setEmail(rs.getString("Email"));
+                   officer.setPensionEmailSend(rs.getString("PensionEmailSend"));
+                   officer.setSalaryIncreamentEmailSendYear(rs.getString("SalaryIncreamentEmailSendYear"));
+                   officer.setSalaryIncreamentEmailSendYearAll(rs.getString("SalaryIncreamentEmailSendYearAll"));
                    
                    officers.add(officer);
                }

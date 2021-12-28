@@ -200,7 +200,8 @@ List<String> YesNoList = com.samith.configs.VariableStorage.getYesNoList();
             </div>
              <div><label>දුරකථන අංකය</label><input type="text" name="ContactNo"></div>
              <div><label>උපන් දිනය</label><input type="date" name="BirthDay" required></div>
-              <div><label>ලිපිනය</label><input type="text" name="Address" ></div>
+             <div><label>ලිපිනය</label><input type="text" name="Address" ></div>
+             <div><label>විද්යුත් ලිපිනය</label><input type="text" name="Email"></div>
           </div>
         </div>
       </fieldset>

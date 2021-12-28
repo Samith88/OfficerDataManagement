@@ -39,6 +39,8 @@ List<String> AreaFileNoList  = com.samith.configs.VariableStorage.getAreaFileNoL
 List<String> DesignationList = com.samith.configs.VariableStorage.getDesignationList();
 List<String> GradeList = com.samith.configs.VariableStorage.getGradeList();
 List<String> YesNoList = com.samith.configs.VariableStorage.getYesNoList();
+List<String> IsActive = com.samith.configs.VariableStorage.getIsActive(); 
+List<String> EmailSendYN = com.samith.configs.VariableStorage.getEmailSendYN();
 //request.setAttribute("operation", "update");
 //session.setAttribute("operation",  "update");
 //session.setAttribute("OfficerEntryId",  officer.getOfficerEntryId());
@@ -187,10 +189,10 @@ List<String> YesNoList = com.samith.configs.VariableStorage.getYesNoList();
         </legend>
         <div  class="personal-details">
           <div>
-              <div><label>නිලධාරි අංකය(වෙනස් නොකරන්න)</label><input type="text" name="OfficerEntryId" value="<%=officer.getOfficerEntryId()%>" ></div>
+            <div><label>නිලධාරි අංකය(වෙනස් නොකරන්න)</label><input type="text" name="OfficerEntryId" value="<%=officer.getOfficerEntryId()%>" ></div>
             <div><label>අනු අංකය*</label><input type="text" name="IndexNumber" value="<%=officer.getIndexNumber()%>"  required></div>
             <div><label>මුලකුරු සමග නම*</label><input type="text" name="EmpName" value="<%=officer.getEmpName()%>"  required></div>
-            <div><label>සම්පුර්න නම*</label><input type="text" name="FullName" value="<%=officer.getFullName()%>"  required></div>
+            <div><label>සම්පුර්න නම*</label><input type="text" name="FullName" value="<%=officer.getFullName()%>"></div>
             <div><label>හැදුනුම්පත් අංකය*</label><input type="text" name="NIC" value="<%=officer.getNIC()%>"  required></div>
           </div>
           <div>
@@ -201,7 +203,7 @@ List<String> YesNoList = com.samith.configs.VariableStorage.getYesNoList();
                         String selected="";
                         for (int i = 0; i < GenderList.size(); i++) {
                     %>
-                    <option value=<%=GenderList.get(i)%><% if(GenderList.get(i).equals(officer.getGender())){selected=" selected";} %> <%=selected%><%selected="";%>><%=GenderList.get(i)%></option>
+                    <option value=<%=GenderList.get(i)%><% if(GenderList.get(i).equals(officer.getGender()) ){selected=" selected";} %> <%=selected%><%selected="";%>><%=GenderList.get(i)%></option>
                     <%
                         }
                     %>
@@ -210,6 +212,7 @@ List<String> YesNoList = com.samith.configs.VariableStorage.getYesNoList();
              <div><label>උපන් දිනය</label><input type="date" name="BirthDay" value="<%=officer.getBirthDay()%>"  required></div>
             <div><label>දුරකථන අංකය</label><input type="text" name="ContactNo" value="<%=officer.getContactNo()%>"></div>
              <div><label>ලිපිනය</label><input type="text" name="Address" value="<%=officer.getAddress()%>" ></div>
+             <div><label>විද්යුත් ලිපිනය</label><input type="text" name="Email" value="<%=officer.getEmail()%>"></div>
           </div>
         </div>
       </fieldset>
@@ -225,7 +228,7 @@ List<String> YesNoList = com.samith.configs.VariableStorage.getYesNoList();
                     <%
                         for (int i = 0; i < DesignationList.size(); i++) {
                     %>
-                    <option value=<%=DesignationList.get(i)%><% if(DesignationList.get(i).equals(officer.getDesignation())){selected=" selected";} %><%=selected%><%selected="";%>><%=DesignationList.get(i)%></option>
+                    <option value=<%=DesignationList.get(i)%><% if(DesignationList.get(i).equals(officer.getDesignation())  ){selected=" selected";} %><%=selected%><%selected="";%>><%=DesignationList.get(i)%></option>
                     <%
                         }
                     %>
@@ -257,6 +260,19 @@ List<String> YesNoList = com.samith.configs.VariableStorage.getYesNoList();
                     %>
              </select>
            </div>
+             
+          <div>
+              <label>  සක්‍රිය බව  </label>
+                <select name="IsActive">
+                    <%
+                        for (int i = 0; i < IsActive.size(); i++) {
+                    %>
+                    <option value=<%=IsActive.get(i)%><% if(IsActive.get(i).equals(officer.getIsActive())){selected=" selected";} %><%=selected%><%selected="";%>><%=IsActive.get(i)%></option>
+                    <%
+                        }
+                    %>
+             </select>
+           </div>
            
         </div>
       </fieldset>
@@ -282,7 +298,7 @@ List<String> YesNoList = com.samith.configs.VariableStorage.getYesNoList();
                     <%
                         for (int i = 0; i < ServiceAreaList.size(); i++) {
                     %>
-                    <option value=<%=ServiceAreaList.get(i)%><% if(ServiceAreaList.get(i).equals(officer.getServiceArea())){selected=" selected";} %> <%=selected%><%selected="";%>><%=ServiceAreaList.get(i)%></option>
+                    <option value=<%=ServiceAreaList.get(i)%><% if(ServiceAreaList.get(i).equals(officer.getServiceArea())  ){selected=" selected";} %> <%=selected%><%selected="";%>><%=ServiceAreaList.get(i)%></option>
                     <%
                         }
                     %>
@@ -406,6 +422,29 @@ List<String> YesNoList = com.samith.configs.VariableStorage.getYesNoList();
             </select>
            </div>
           <div><label>විශ්‍රාම ලබන  දිනය </label><input type="date" name="PensionDate" value="<%=officer.getPensionDate()%>"></div>
+        </div>
+      </fieldset>
+        
+        
+      <fieldset>
+        <legend>
+          <h3>අමතර තොරතුරු (වෙනස් කිරිමට පෙර දනුවත් වෙන්න)</h3>
+        </legend>
+        <div  class="account-details">
+           <div>
+              <label>සේවා</label>
+                <select name="PensionEmailSend">
+                    <%
+                        for (int i = 0; i < EmailSendYN.size(); i++) {
+                    %>
+                    <option value=<%=EmailSendYN.get(i)%><% if(EmailSendYN.get(i).equals(officer.getPensionEmailSend())){selected=" selected";} %><%=selected%><%selected="";%>><%=EmailSendYN.get(i)%></option>
+                    <%
+                        }
+                    %>
+             </select>
+            </div>
+              <div><label>අවසාන වැටුප්  වැඩිවීම් ලිපිය යැවු වර්ෂය</label><input type="number" name="SalaryIncreamentEmailSendYear" value="<%=officer.getSalaryIncreamentEmailSendYear()%>"></div>
+              <div><label>අවසාන සාරාන්ශ  වැටුප්  වැඩිවීම් ලිපිය යැවු වර්ෂය</label><input type="number" name="SalaryIncreamentEmailSendYearAll" value="<%=officer.getSalaryIncreamentEmailSendYearAll()%>"></div>
         </div>
       </fieldset>
       

@@ -7,6 +7,7 @@ package com.samith.controller;
 
 import com.samith.base.Officer;
 import com.samith.configs.MethodStorage;
+import static com.samith.configs.MethodStorage.getSalaryIncreamentDateString;
 import com.samith.configs.VariableStorage;
 import com.samith.dao.OfficerDB;
 import com.samith.logging.getLogger;
@@ -30,7 +31,7 @@ import javax.mail.internet.MimeMultipart;
  * @author UDISSSA1
  */
 public class EmailProcessor {
-    public void sendEmail(String subject,String mailBody) {
+    public boolean sendEmail(String subject,String mailBody) {
         // Get system properties
         System.setProperty("mail.mime.charset", "UTF-8");
         getLogger.getLog().debug(mailBody);
@@ -65,9 +66,53 @@ public class EmailProcessor {
             message.setContent(multipart);
             Transport.send(message);
             getLogger.getLog().debug("Email Sent message successfully....");
+            return true;
+        } catch (MessagingException mex) {
+            getLogger.getLog().debug(mex.toString());
+            return false;
+        }
+    }
+    
+    public boolean sendEmail(String subject,String mailBody, String ToAddress) {
+        // Get system properties
+        System.setProperty("mail.mime.charset", "UTF-8");
+        getLogger.getLog().debug(mailBody);
+        Properties properties = System.getProperties();
+        // Setup mail server
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", VariableStorage.getSmtpHost());
+        properties.put("mail.smtp.port",VariableStorage.getSmtpPort());
+        // Get the Session object.// and pass username and password
+        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(VariableStorage.getEuser(), VariableStorage.getEpass());
+            }
+        });
+        session.setDebug(true);
+        try {
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(VariableStorage.getEuser()));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(ToAddress));
+
+             message.setSubject(subject,"utf-8");
+             MimeMultipart multipart = new MimeMultipart("related");
+
+            BodyPart messageBodyPart = new MimeBodyPart();
+            messageBodyPart.setContent(mailBody, "text/html; charset=utf-8");
+            messageBodyPart.setText(mailBody);
+            messageBodyPart.setHeader("Content-Type", "text/html");
+        
+            multipart.addBodyPart(messageBodyPart);
+        
+            message.setContent(multipart);
+            Transport.send(message);
+            getLogger.getLog().debug("Email Sent message successfully....");
+            return true;
             
         } catch (MessagingException mex) {
             getLogger.getLog().debug(mex.toString());
+            return false;
         }
     }
     
@@ -77,30 +122,53 @@ public class EmailProcessor {
          List<Officer> officers = officerDB.getOfficerAllByPensionDate(MethodStorage.getPentionDate());
          try{
                 if(officers.size()>0){
-                        sendEmail("නිලධාරි විශ්‍රාම  තොරතුරු:"+getCurrentDate(),getEmailBody(officers));
-                        isEmailSendSuccess=true;
+                        if(sendEmail("නිලධාරි විශ්‍රාම  තොරතුරු:"+getCurrentDate(),getEmailBodyPension(officers)))
+                            officerDB.updatePensionDetails(officers);
                 }
                 else
                         getLogger.getLog().debug("No pension officers for today");
            } catch (Exception e) {
                getLogger.getLog().debug("Error in getting pension officers");
-           }  
-
-         try{
-                if(isEmailSendSuccess){
-                        officerDB.updatePensionDetails(officers);
-                        getLogger.getLog().debug("Pension email entry updated in DB after send emails");
-                }
-                else
-                        getLogger.getLog().debug("No Pension email entry updated in DB");
-           } catch (Exception e) {
-               getLogger.getLog().debug("Error in pension email entry update  DB");
-           }
+           } 
          
+    }
+    
+    public  void  sendSalaryIncreamentEmails() throws Exception{
+         OfficerDB officerDB=new OfficerDB();
+         List<Officer> officers = officerDB.getOfficerAllBySalaryIncreamentDate(MethodStorage.getSalaryIncreamentDate());
+         if(officers.size()>0){
+              for (Officer  officer: officers) {
+                try{
+                           if(sendEmail("නිලධාරි වැටුප්  වැඩිවීම්  තොරතුරු:"+getCurrentDate(),getEmailBodyPerOfficerSalaryIncreament(officer),officer.getEmail()))
+                                officerDB.updateCurrentSalaryIncreamentYear(officer);
+                    
+                   } catch (Exception e) {
+                       getLogger.getLog().debug("Error in sending salary increment details for officer: '"+officer.getEmpName()+"' ");
+                   }
+              }
+         }
+         else
+              getLogger.getLog().debug("No salary increment officers for today");
+         
+    }
+    
+     public  void  sendSalaryIncreamentEmailsAll() throws Exception{
+         OfficerDB officerDB=new OfficerDB();
+         List<Officer> officers = officerDB.getMonthOfficersForSalaryIncreament(MethodStorage.getSalaryIncreamentMonth());
+         if(officers.size()>0){
+                try{
+                           if(sendEmail("නිලධාරි වැටුප්  වැඩිවීම්  තොරතුරු:"+getCurrentDate(),getEmailBodyAllSalaryIncreament(officers)))
+                                    officerDB.updateCurrentSalaryIncreamentYearAll(officers);
+                   } catch (Exception e) {
+                       getLogger.getLog().debug("Error in sending summary of salary increment details for officers");
+                   }
+         }
+         else
+              getLogger.getLog().debug("No salary increment officers for today to send monthly salary increament details");
          
     }
 
-    public String getEmailBody(List<Officer> officers){
+    public String getEmailBodyPension(List<Officer> officers){
         String fullTable="";
         
         for (int i = 0; i < officers.size(); i++) {
@@ -113,13 +181,45 @@ public class EmailProcessor {
              oneOfficer += "<tr><td><b> විෂය : </b></td><td><b>"+officer.getDesignation()+"</b></td></tr>";
              oneOfficer += "<tr><td><b> සේවා ස්තානය : </b></td><td><b>"+officer.getOfficeLocation()+"</b></td></tr>";
              oneOfficer += "<tr><td><b>  වැටුප් අංකය   : </b></td><td><b>"+officer.getSalaryNo()+"</b></td></tr>";
-             oneOfficer += "<tr><td><b>  වැටුප් වර්ධක දිනය   : </b></td><td><b>"+officer.getSalaryIncreamentDate()+"</b></td></tr>";
              oneOfficer += "<tr><td>****** </td><td> ******</td></tr>";
              
              fullTable += oneOfficer;
         }
-        return "<html><body>"+"<h1>"+"නිලධාරි විශ්‍රාම  තොරතුරු:"+getCurrentDate()+"<h1>"+"<table>" +  fullTable+"</table></body></html>";
+        return "<html><body>"+"<h3>"+"නිලධාරි විශ්‍රාම  තොරතුරු:"+getCurrentDate()+"</h3>"+"<br/><table>" +  fullTable+"</table></body></html>";
     }
+    
+     public String getEmailBodyAllSalaryIncreament(List<Officer> officers){
+        String fullTable="";
+        
+        for (int i = 0; i < officers.size(); i++) {
+             String oneOfficer="";
+             Officer officer= officers.get(i);
+             oneOfficer += "<tr><td><b>නම:</b></td><td><b>"+officer.getEmpName()+"</b></td></tr>";
+             oneOfficer += "<tr><td><b>අනු අංකය:</b></td><td><b>"+officer.getIndexNumber()+"</b></td></tr>";
+             oneOfficer += "<tr><td><b>වැටුප් වැඩිවීම් දිනය: </b></td><td><b>"+getSalaryIncreamentDateString()+"</b></td></tr>";
+             oneOfficer += "<tr><td><b> තනතුර : </b></td><td><b>"+officer.getOfficeType()+"</b></td></tr>";
+             oneOfficer += "<tr><td><b> විෂය : </b></td><td><b>"+officer.getDesignation()+"</b></td></tr>";
+             oneOfficer += "<tr><td><b>  වැටුප් අංකය   : </b></td><td><b>"+officer.getSalaryNo()+"</b></td></tr>";
+             oneOfficer += "<tr><td>****** </td><td> ******</td></tr>";
+             
+             fullTable += oneOfficer;
+        }
+        return "<html><body>"+"<h3>"+"නිලධාරි වැටුප්  වැඩිවීම්  තොරතුරු:"+getCurrentDate()+"</h3>"+"<br/><table>" +  fullTable+"</table></body></html>";
+    }
+    
+    public String getEmailBodyPerOfficerSalaryIncreament(Officer officer){
+            String oneOfficer="";
+            oneOfficer += "<tr><td><b>නම:</b></td><td><b>"+officer.getEmpName()+"</b></td></tr>";
+            oneOfficer += "<tr><td><b>අනු අංකය:</b></td><td><b>"+officer.getIndexNumber()+"</b></td></tr>";
+            oneOfficer += "<tr><td><b>වැටුප් වැඩිවීම් දිනය: </b></td><td><b>"+getSalaryIncreamentDateString()+"</b></td></tr>";
+            oneOfficer += "<tr><td><b> තනතුර : </b></td><td><b>"+officer.getOfficeType()+"</b></td></tr>";
+            oneOfficer += "<tr><td><b> විෂය : </b></td><td><b>"+officer.getDesignation()+"</b></td></tr>";
+            oneOfficer += "<tr><td><b>  වැටුප් අංකය   : </b></td><td><b>"+officer.getSalaryNo()+"</b></td></tr>";
+            oneOfficer += "<tr><td>****** </td><td> ******</td></tr>";
+
+        return "<html><body>"+"<h3>"+"නිලධාරි වැටුප්  වැඩිවීම්  තොරතුරු: "+officer.getEmpName()+"</h3>"+"<br/> හිතවත් "+officer.getEmpName()+", <br/> ඔබගේ වේතන වැඩිවීම සදහන් කල දවසේ යෙදි ඇති බැවින් කරුනාකර ඒ සදහා ලිපියක් ඉදිරිපත් කරන්න."
+                + "<br/> <table>" + oneOfficer + "</table></body></html>";
+    }    
     
     private String getCurrentDate(){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm"); 
